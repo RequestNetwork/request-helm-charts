@@ -1,0 +1,50 @@
+kind: ConfigMap
+metadata:
+  name: {{ include "request-node.fullname" . }}-ipfs-config
+  labels:
+{{ include "request-node.labels" . | indent 4 }}
+apiVersion: v1
+data:
+  swarm.key: |-
+    /key/swarm/psk/1.0.0/
+    /base16/
+    5f3af0599d991e5eb4c37da2472aa299759ee3350ba26c125d0c7579dd04dd52
+  init.sh: |-
+    #!/bin/sh
+    set -e
+    set -x
+
+    # Ensures IPFS daemon can only connect to private networks
+    export LIBP2P_FORCE_PNET=1
+
+    # Ensures we have an ipfs config initialized at the current persistent volume
+    [ -f $IPFS_PATH/version ] || {
+      echo "No ipfs repo found in $IPFS_PATH. Initializing..."
+      ipfs init
+    }
+
+    # Clean up all bootstrap nodes
+    # https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks
+    echo "Removing all bootstrap nodes..."
+    ipfs bootstrap rm --all
+
+    ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
+
+    {{- if .Values.ipfsBootstrapNode }}
+    IPFS_ID=$(ipfs id -f="<id>")
+    {{- else }}
+    IPFS_ID="QmaSrBXFBaupfeGMTuigswtKtsthbVaSonurjTV967Fdxx"
+    {{- end }}
+    ipfs bootstrap add /dns4/ipfs-bootstrap.request.network/tcp/4001/ipfs/$IPFS_ID
+
+    # Always check for private network secrets
+    [ -f $IPFS_PATH/swarm.key ] || {
+      echo "No swarm.key found, copying from mounted secret"
+      [ -f /ipfs-config/swarm.key ] || {
+        echo "No swarm.key found in ipfs config"
+        exit 1
+      }
+      cp -v /ipfs-config/swarm.key $IPFS_PATH/swarm.key
+      chmod 600 $IPFS_PATH/swarm.key
+    }
+    exit 0

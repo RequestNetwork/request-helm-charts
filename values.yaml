@@ -1,0 +1,97 @@
+# Default values for request-node.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The number of replicas for the Request Node
+replicaCount: 1
+
+# The Request Node image information
+nodeImage:
+  registry: eu.gcr.io/request-240714/
+  repository: request-network
+  tag: development
+  pullPolicy: Always
+
+# The IPFS image information
+ipfsImage:
+  image: ipfs/go-ipfs:v0.4.21
+  pullPolicy: IfNotPresent
+
+# Name override
+nameOverride: ""
+fullnameOverride: ""
+
+# The request node service type and port
+service:
+  type: ClusterIP
+  port: 80
+
+# The resources declaration for the Request Node and IPFS
+resources:
+  node: {}
+  ipfs: {}
+
+# Request Node port
+port: 3000
+
+# IPFS swarm and API ports
+ipfsSwarmPort: 4001
+ipfsApiPort: 5001
+
+# The Request Node and IPFS persistence settings
+persistence:
+  # Disable if we don't want persistence
+  enabled: true
+  node:
+    ## request node data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    size: "8Gi"
+    accessModes:
+      - ReadWriteOnce
+  ipfs:
+    ## ipfs data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    size: "8Gi"
+    accessModes:
+      - ReadWriteOnce
+
+# Default Request Node environment variables. Some of these have to be set for a working environment (e.g: MNEMONIC and WEB3_PROVIDER_URL)
+nodeEnv:
+  - name: LOG_LEVEL
+    value: DEBUG
+  - name: IPFS_HOST
+    value: "{{ .Release.Name }}-ipfs"
+  - name: IPFS_PORT
+    value: "5001"
+  - name: IPFS_TIMEOUT
+    value: "5000"
+  - name: ETHEREUM_NETWORK_ID
+    value: "4"
+  - name: PORT
+    value: "3000"
+  - name: WEB3_PROVIDER_URL
+    value: ""
+  - name: MNEMONIC
+    value: ""
+  - name: TRANSACTION_INDEX_FILE_PATH
+    value: /index/store.json
+
+# Set to true if you want the deployed IPFS node to be the IPFS bootstrap
+ipfsBootstrapNode: false
+
+# Advanced kubernetes configs
+nodeSelector: {}
+tolerations: []
+affinity: {}
