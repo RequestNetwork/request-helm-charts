@@ -30,12 +30,10 @@ data:
 
     ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
 
-    {{- if .Values.ipfsBootstrapNode }}
-    IPFS_ID=$(ipfs id -f="<id>")
-    {{- else }}
-    IPFS_ID="QmaSrBXFBaupfeGMTuigswtKtsthbVaSonurjTV967Fdxx"
-    {{- end }}
-    ipfs bootstrap add /dns4/ipfs-bootstrap.request.network/tcp/4001/ipfs/$IPFS_ID
+    /dns4/ipfs-bootstrap.request.network/tcp/4001/ipfs/QmPBPgTDVjveRu6KjGVMYixkCSgGtVyV8aUe6wGQeLZFVd
+    /dns4/ipfs-bootstrap-2.request.network/tcp/4001/ipfs/QmYdcSoVNU1axgSnkRAyHtwsKiSvFHXeVvRonGCAV9LVEj
+    /dns4/ipfs-2.request.network/tcp/4001/ipfs/QmPBPgTDVjveRu6KjGVMYixkCSgGtVyV8aUe6wGQeLZFVd
+    /dns4/ipfs.request.network/tcp/4001/ipfs/Qmb6a5DH45k8JwLdLVZUhRhv1rnANpsbXjtsH41esGhNCh
 
     # Always check for private network secrets
     [ -f $IPFS_PATH/swarm.key ] || {

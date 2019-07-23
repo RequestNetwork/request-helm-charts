@@ -88,9 +88,6 @@ nodeEnv:
   - name: TRANSACTION_INDEX_FILE_PATH
     value: /index/store.json
 
-# Set to true if you want the deployed IPFS node to be the IPFS bootstrap
-ipfsBootstrapNode: false
-
 # Advanced kubernetes configs
 nodeSelector: {}
 tolerations: []
