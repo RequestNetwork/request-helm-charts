@@ -12,6 +12,6 @@ spec:
     protocol: TCP
     targetPort: 4001
   selector:
-    {{ include "request-node.labels" . | indent 4 }}
+{{ include "request-node.labels" . | indent 4 }}
   sessionAffinity: None
   type: LoadBalancer

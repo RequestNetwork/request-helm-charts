@@ -8,9 +8,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.port }}
-      protocol: TCP
-      name: http
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.port }}
+    protocol: TCP
+    name: http
   selector:
-    {{ include "request-node.labels" . | indent 4 }}
+{{ include "request-node.labels" . | indent 4 }}
