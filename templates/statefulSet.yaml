@@ -1,0 +1,166 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "request-node.fullname" . }}
+  labels:
+{{ include "request-node.labels" . | indent 4 }}
+spec:
+  serviceName: {{ .Chart.Name }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "request-node.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "request-node.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      securityContext:
+        # The image runs as uid 1000 by default, and needs to be able to write to the persistent volume to be able to start.
+        fsGroup: 1000
+        runAsUser: 1000
+
+      # This init container setup the IPFS node config on it's persistent storage before starting the main containers
+      initContainers:
+      - name: init-ipfs
+        image: {{ .Values.ipfsImage.image }}
+        command: ['/bin/sh', '/ipfs-config/init.sh']
+        volumeMounts:
+        - name: ipfs-storage
+          mountPath: /data/ipfs
+        - name: ipfs-config
+          mountPath: /ipfs-config
+
+      containers:
+      # Request Node Container
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.nodeImage.registry }}{{ .Values.nodeImage.repository }}:{{ .Values.nodeImage.tag }}"
+        command:
+        - yarn
+        - --cwd
+        - packages/request-node
+        - start
+        imagePullPolicy: {{ .Values.nodeImage.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.port }}
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: http
+        resources:
+          {{- toYaml .Values.resources.node | nindent 12 }}
+        volumeMounts:
+        - name: persistent-index
+          mountPath: /index
+        {{- with .Values.nodeEnv }}
+        env:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+
+      # IPFS Node Container
+      - name: ipfs
+        image: {{ .Values.ipfsImage.image }}
+        imagePullPolicy: {{ .Values.ipfsImage.pullPolicy }}
+        command:
+          - ipfs
+          - daemon
+        ports:
+        - containerPort: {{ .Values.ipfsSwarmPort }}
+          name: swarm
+        - containerPort: {{ .Values.ipfsApiPort }}
+          name: api
+        volumeMounts:
+        - name: ipfs-storage
+          mountPath: /data/ipfs
+        env:
+        - name: LIBP2P_FORCE_PNET
+          value: "1"
+        resources:
+          {{ toYaml .Values.resources.ipfs | indent 12 }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      # Pod volumes
+      volumes:
+      # IPFS config pod
+      - name: ipfs-config
+        configMap:
+          name: {{ include "request-node.fullname" . }}-ipfs-config
+      # If persistence is disabled, we use temporary volumes for IPFS and the Request Node persistent index
+      {{- if not .Values.persistence.enabled }}
+      - name: ipfs-storage
+        emptyDir: {}
+      - name: persistent-index
+        emptyDir: {}
+      {{- end }}
+
+  # If persistence is enabled (default), we create a persistent volume for the Request Node persistent index and one for IPFS
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+  # IPFS storage volume
+  - metadata:
+      name: ipfs-storage
+      labels:
+        app.kubernetes.io/name: {{ include "request-node.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- range $key, $value := .Values.persistence.ipfs.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+    spec:
+      accessModes:
+        {{- range .Values.persistence.ipfs.accessModes }}
+        - {{ . | quote }}
+        {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.ipfs.size | quote }}
+    {{- if .Values.persistence.ipfs.storageClass }}
+    {{- if (eq "-" .Values.persistence.ipfs.storageClass) }}
+      storageClassName: ""
+    {{- else }}
+      storageClassName: "{{ .Values.persistence.ipfs.storageClass }}"
+    {{- end }}
+    {{- end }}
+  # Request node persistent index volume
+  - metadata:
+      name: persistent-index
+      labels:
+        app.kubernetes.io/name: {{ include "request-node.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- range $key, $value := .Values.persistence.node.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+    spec:
+      accessModes:
+        {{- range .Values.persistence.node.accessModes }}
+        - {{ . | quote }}
+        {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.node.size | quote }}
+    {{- if .Values.persistence.node.storageClass }}
+    {{- if (eq "-" .Values.persistence.node.storageClass) }}
+      storageClassName: ""
+    {{- else }}
+      storageClassName: "{{ .Values.persistence.node.storageClass }}"
+    {{- end }}
+    {{- end }}
+  {{- end }}
