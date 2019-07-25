@@ -14,8 +14,8 @@ nodeImage:
 
 # The IPFS image information
 ipfsImage:
-  image: ipfs/go-ipfs:v0.4.21
-  pullPolicy: IfNotPresent
+  image: requestnetwork/request-ipfs
+  pullPolicy: Always
 
 # Name override
 nameOverride: ""
