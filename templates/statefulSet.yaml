@@ -9,29 +9,16 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "request-node.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "request-node.labels" . | indent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "request-node.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "request-node.labels" . | indent 8 }}
     spec:
       securityContext:
         # The image runs as uid 1000 by default, and needs to be able to write to the persistent volume to be able to start.
         fsGroup: 1000
         runAsUser: 1000
-
-      # This init container setup the IPFS node config on it's persistent storage before starting the main containers
-      initContainers:
-      - name: init-ipfs
-        image: {{ .Values.ipfsImage.image }}
-        command: ['/bin/sh', '/ipfs-config/init.sh']
-        volumeMounts:
-        - name: ipfs-storage
-          mountPath: /data/ipfs
-        - name: ipfs-config
-          mountPath: /ipfs-config
 
       containers:
       # Request Node Container
@@ -69,9 +56,6 @@ spec:
       - name: ipfs
         image: {{ .Values.ipfsImage.image }}
         imagePullPolicy: {{ .Values.ipfsImage.pullPolicy }}
-        command:
-          - ipfs
-          - daemon
         ports:
         - containerPort: {{ .Values.ipfsSwarmPort }}
           name: swarm
@@ -98,14 +82,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      # Pod volumes
-      volumes:
-      # IPFS config pod
-      - name: ipfs-config
-        configMap:
-          name: {{ include "request-node.fullname" . }}-ipfs-config
       # If persistence is disabled, we use temporary volumes for IPFS and the Request Node persistent index
       {{- if not .Values.persistence.enabled }}
+      volumes:
       - name: ipfs-storage
         emptyDir: {}
       - name: persistent-index
