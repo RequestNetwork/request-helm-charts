@@ -85,7 +85,7 @@ nodeEnv:
     value: ""
   - name: MNEMONIC
     value: ""
-  - name: TRANSACTION_INDEX_FILE_PATH
+  - name: INITIALIZATION_STORAGE_FILE_PATH
     value: /index/store.json
 
 # Advanced kubernetes configs
