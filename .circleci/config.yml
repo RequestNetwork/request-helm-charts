@@ -48,5 +48,9 @@ workflows:
       - push-helm-repository:
           requires:
             - build-request-node
+          filters:
+            branches: 
+              only: 
+                - master
 
     
