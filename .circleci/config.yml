@@ -1,17 +1,52 @@
 version: 2.1
 
+orbs:
+  helm: circleci/helm@0.1.2
+  gcp-cli: circleci/gcp-cli@1.8.2
+
 jobs: 
-  test: 
+  build-request-node:
     docker: 
       - image: circleci/python:3.7
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: echo "hello"
-
+      - helm/install-helm-client
+      - run: 
+          name: Lint
+          command: helm lint request-node
+      - run: 
+          name: Package
+          command: |
+            mkdir charts
+            helm package request-node -d ./charts
+      - persist_to_workspace:
+          root: ~/repo
+          paths: 
+            - ./charts
+  push-helm-repository:
+    docker: 
+      - image: google/cloud-sdk 
+    working_directory: ~/repo    
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - helm/install-helm-client
+      - gcp-cli/initialize
+      - run:
+          name: Index Repository
+          command: helm repo index charts --url https://request-charts.storage.googleapis.com
+      - run: 
+          name: Push to Bucket
+          command: gsutil rsync -d charts gs://request-charts/ 
+            
 workflows:
   version: 2
   build:
     jobs:
-      - test
+      - build-request-node
+      - push-helm-repository:
+          requires:
+            - build-request-node
 
     
