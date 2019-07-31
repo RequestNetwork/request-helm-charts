@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/RequestNetwork/request-node-helm-chart.svg?style=svg)](https://circleci.com/gh/RequestNetwork/request-node-helm-chart)
+
+
 # Request Helm Charts repository
 
 This repository contains sources for all of Request Helm Charts, available at https://request-charts.storage.googleapis.com.
