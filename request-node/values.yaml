@@ -5,15 +5,34 @@
 # The number of replicas for the Request Node
 replicaCount: 1
 
+nodeEnv: 
+  # Required settings
+  # the mnemonic of a wallet for gas fees
+  mnemonic: toto
+  # the URL of the Web3 provider (infura for instance)
+  web3ProviderUrl: abcd
+  # the ethereum network (0 custom, 1 mainnet, 4 rinkeby)
+  networkId: 4
+  
+  # other settings
+  logLevel: DEBUG
+  ipfsTimeout: 5000
+  initializationStorageFilePath: "/index/store.json"
+  
+  # extra environment variables
+  extra: 
+  # - name: VAR_NAME
+  #   value: VAR_VALUE
+
 # The Request Node image information
-nodeImage:
+nodeImage: 
   registry: eu.gcr.io/request-240714/
   repository: request-network
   tag: development
   pullPolicy: Always
 
 # The IPFS image information
-ipfsImage:
+ipfsImage: 
   image: requestnetwork/request-ipfs
   pullPolicy: Always
 
@@ -22,7 +41,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 # The request node service type and port
-service:
+service: 
   type: ClusterIP
   port: 80
 
@@ -66,27 +85,6 @@ persistence:
     size: "8Gi"
     accessModes:
       - ReadWriteOnce
-
-# Default Request Node environment variables. Some of these have to be set for a working environment (e.g: MNEMONIC and WEB3_PROVIDER_URL)
-nodeEnv:
-  - name: LOG_LEVEL
-    value: DEBUG
-  - name: IPFS_HOST
-    value: "{{ .Release.Name }}-ipfs"
-  - name: IPFS_PORT
-    value: "5001"
-  - name: IPFS_TIMEOUT
-    value: "5000"
-  - name: ETHEREUM_NETWORK_ID
-    value: "4"
-  - name: PORT
-    value: "3000"
-  - name: WEB3_PROVIDER_URL
-    value: ""
-  - name: MNEMONIC
-    value: ""
-  - name: INITIALIZATION_STORAGE_FILE_PATH
-    value: /index/store.json
 
 # Advanced kubernetes configs
 nodeSelector: {}
