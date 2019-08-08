@@ -37,11 +37,11 @@ jobs:
           name: Install helm-gcs
           command: helm plugin install https://github.com/hayorov/helm-gcs
       - run: 
-          name: Add repo
-          command: helm repo add request-gcs gs://request-charts
-      - run: 
-          name: Push to repo
-          command: helm gcs push ./charts/* request-gcs
+          name: Add Repo, Auth and push Repo
+          command: |
+            export GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+            helm repo add request-gcs gs://request-charts
+            helm gcs push ./charts/* request-gcs
             
 workflows:
   version: 2
