@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/RequestNetwork/portal.svg?style=svg&circle-token=4407fb9bfff0797dd5e01dee6cff8dfc8da33601)](https://circleci.com/gh/RequestNetwork/portal)
+[![CircleCI](https://circleci.com/gh/RequestNetwork/request-helm-charts.svg?style=svg&circle-token=7f672824b8febacaea69fa451b9944fd07454617)](https://circleci.com/gh/RequestNetwork/request-helm-charts)
 
 
 # Request Helm Charts repository
