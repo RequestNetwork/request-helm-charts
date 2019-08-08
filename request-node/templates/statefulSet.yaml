@@ -57,13 +57,13 @@ spec:
           - name: WEB3_PROVIDER_URL
             value: {{ required "web3ProviderUrl is required" .Values.nodeEnv.web3ProviderUrl }}
           - name: PORT
-            value: {{ .Values.port }}
+            value: {{ .Values.port | quote }}
           - name: ETHEREUM_NETWORK_ID
-            value: {{ required "networkId is required" .Values.nodeEnv.networkId }}
+            value: {{ required "networkId is required" .Values.nodeEnv.networkId | quote }}
           - name: LOG_LEVEL
             value: {{ .Values.nodeEnv.logLevel }}
           - name: IPFS_PORT
-            value: {{ .Values.ipfsApiPort  }}
+            value: {{ .Values.ipfsApiPort | quote  }}
           - name: INITIALIZATION_STORAGE_FILE_PATH
             value: {{ .Values.nodeEnv.initializationStorageFilePath }}
         {{- with .Values.nodeEnv.extra }}
