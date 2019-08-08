@@ -64,8 +64,6 @@ spec:
             value: {{ .Values.nodeEnv.logLevel }}
           - name: IPFS_PORT
             value: {{ .Values.ipfsApiPort  }}
-          - name: IPFS_TIMEOUT
-            value: {{ .Values.nodeEnv.ipfsTimeout }}
           - name: INITIALIZATION_STORAGE_FILE_PATH
             value: {{ .Values.nodeEnv.initializationStorageFilePath }}
         {{- with .Values.nodeEnv.extra }}

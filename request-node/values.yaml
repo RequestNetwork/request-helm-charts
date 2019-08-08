@@ -8,15 +8,14 @@ replicaCount: 1
 nodeEnv: 
   # Required settings
   # the mnemonic of a wallet for gas fees
-  mnemonic: toto
+  mnemonic: 
   # the URL of the Web3 provider (infura for instance)
-  web3ProviderUrl: abcd
+  web3ProviderUrl: 
   # the ethereum network (0 custom, 1 mainnet, 4 rinkeby)
-  networkId: 4
+  networkId: 
   
   # other settings
   logLevel: DEBUG
-  ipfsTimeout: 5000
   initializationStorageFilePath: "/index/store.json"
   
   # extra environment variables
@@ -25,14 +24,14 @@ nodeEnv:
   #   value: VAR_VALUE
 
 # The Request Node image information
-nodeImage: 
+nodeImage:
   registry: eu.gcr.io/request-240714/
   repository: request-network
   tag: development
   pullPolicy: Always
 
 # The IPFS image information
-ipfsImage: 
+ipfsImage:
   image: requestnetwork/request-ipfs
   pullPolicy: Always
 
@@ -41,7 +40,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 # The request node service type and port
-service: 
+service:
   type: ClusterIP
   port: 80
 
