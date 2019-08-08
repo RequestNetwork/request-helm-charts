@@ -33,12 +33,15 @@ jobs:
           at: ~/repo
       - helm/install-helm-client
       - gcp-cli/initialize
-      - run:
-          name: Index Repository
-          command: helm repo index charts --url https://request-charts.storage.googleapis.com
       - run: 
-          name: Push to Bucket
-          command: gsutil rsync -d charts gs://request-charts/ 
+          name: Install helm-gcs
+          command: helm plugin install https://github.com/hayorov/helm-gcs
+      - run: 
+          name: Add repo
+          command: helm repo add request-gcs gs://request-charts
+      - run: 
+          name: Push to repo
+          command: helm gcs push ./charts/* request-gcs
             
 workflows:
   version: 2
