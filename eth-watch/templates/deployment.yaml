@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name  }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+      release: {{ .Release.Name }}
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      labels:
+        app: {{ template "name" . }}
+        chart: {{ template "chart" . }}
+        release: {{ .Release.Name  }}
+        heritage: {{ .Release.Service }}
+    spec:
+      containers:
+      - name: eth-watch
+        image: {{ template "image" . }}
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        envFrom: 
+        - configMapRef:
+            name: {{ template "fullname" . }}-config
+        resources:
+{{ toYaml .Values.resources | indent 10 }}

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-config
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  REQUEST_COLLECTION_NAME: {{ .Values.db.collection | quote }}
+  DATABASE_HOST: {{ .Values.db.host | quote }}
+  DATABASE_PORT: {{ .Values.db.port | quote }}
+  DATABASE_USER: {{ .Values.db.username  | quote }}
+  DATABASE_PASSWORD: {{ .Values.db.password  | quote }}
+  DATABASE_NAME: {{ .Values.db.name  | quote }}
+  REDIS_HOST: {{ .Values.redis.host | quote }}
+  REDIS_PORT: {{ .Values.redis.port  | quote}}
+  WEB3_URL: {{ .Values.web3Url | quote }}
+  ERC20_TRANSFER_EVENT_SIGNATURE_HASH: {{ .Values.erc20Hash | quote }}
+  NETWORK: {{ .Values.network }}
+{{- if .Values.extraEnv }}
+{{ toYaml .Values.extraEnv | indent 2 }}
+{{- end }}
