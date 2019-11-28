@@ -4,56 +4,63 @@ orbs:
   helm: circleci/helm@0.1.2
   gcp-cli: circleci/gcp-cli@1.8.2
 
-jobs: 
-  build-request-node:
-    docker: 
+jobs:
+  build-chart:
+    parameters:
+      chart:
+        type: string
+    docker:
       - image: circleci/python:3.7
     working_directory: ~/repo
     steps:
       - checkout
       - helm/install-helm-client
-      - run: 
+      - run:
           name: Lint
-          command: helm lint request-node
-      - run: 
+          command: helm lint << parameters.chart >>
+      - run:
           name: Package
           command: |
             mkdir charts
-            helm package request-node -d ./charts
+            helm package << parameters.chart >> -d ./charts
       - persist_to_workspace:
           root: ~/repo
-          paths: 
+          paths:
             - ./charts
   push-helm-repository:
-    docker: 
-      - image: google/cloud-sdk 
-    working_directory: ~/repo    
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/repo
     steps:
       - attach_workspace:
           at: ~/repo
       - helm/install-helm-client
       - gcp-cli/initialize
-      - run: 
+      - run:
           name: Install helm-gcs
           command: helm plugin install https://github.com/hayorov/helm-gcs
-      - run: 
+      - run:
           name: Add Repo, Auth and push Repo
           command: |
             export GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
             helm repo add request-gcs gs://request-charts
             helm gcs push ./charts/* request-gcs --public
-            
+
 workflows:
   version: 2
   build:
     jobs:
-      - build-request-node
+      - build-chart:
+          name: build-request-node
+          chart: request-node
+      - build-chart:
+          name: build-eth-watch
+          chart: eth-watch
       - push-helm-repository:
           requires:
             - build-request-node
+            - build-eth-watch
           filters:
-            branches: 
-              only: 
+            branches:
+              only:
                 - master
-
-    
