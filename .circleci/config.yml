@@ -44,7 +44,7 @@ jobs:
           command: |
             export GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
             helm repo add request-gcs gs://request-charts
-            helm gcs push ./charts/* request-gcs --public
+            for f in ./charts/*; do echo $f; helm gcs push $f request-gcs --public --force ; done;
 
 workflows:
   version: 2
