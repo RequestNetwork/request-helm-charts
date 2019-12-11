@@ -29,13 +29,13 @@ nodeIndexDirectoryPath: /index
 # The Request Node image information
 nodeImage:
   image: requestnetwork/request-node
-  tag: latest
+  tag: 0.5.5
   pullPolicy: Always
 
 # The IPFS image information
 ipfsImage:
   image: requestnetwork/request-ipfs
-  tag: latest
+  tag: 0.3.4
   pullPolicy: Always
 
 # Name override
@@ -92,3 +92,12 @@ persistence:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+  tls:
