@@ -23,12 +23,7 @@ spec:
       containers:
       # Request Node Container
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.nodeImage.registry }}{{ .Values.nodeImage.repository }}:{{ .Values.nodeImage.tag }}"
-        command:
-        - yarn
-        - --cwd
-        - packages/request-node
-        - start
+        image: "{{ .Values.nodeImage.image }}:{{ .Values.nodeImage.tag }}"
         imagePullPolicy: {{ .Values.nodeImage.pullPolicy }}
         ports:
         - name: http
@@ -46,8 +41,7 @@ spec:
           {{- toYaml .Values.resources.node | nindent 12 }}
         volumeMounts:
         - name: persistent-index
-          mountPath: /index
-        
+          mountPath: {{ .Values.nodeIndexDirectoryPath }}
         env:
           - name: MNEMONIC
             valueFrom:
@@ -72,7 +66,7 @@ spec:
 
       # IPFS Node Container
       - name: ipfs
-        image: {{ .Values.ipfsImage.image }}
+        image: "{{ .Values.ipfsImage.image }}:{{ .Values.ipfsImage.tag }}"
         imagePullPolicy: {{ .Values.ipfsImage.pullPolicy }}
         ports:
         - containerPort: {{ .Values.ipfsSwarmPort }}
@@ -83,15 +77,16 @@ spec:
         - name: ipfs-storage
           mountPath: /data/ipfs
         env:
+        # Forces the IPFS node to connect to the Request dedicated network
         - name: LIBP2P_FORCE_PNET
           value: "1"
         resources:
           {{ toYaml .Values.resources.ipfs | indent 12 }}
 
-      {{- with .Values.nodeSelector }}
+    {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
