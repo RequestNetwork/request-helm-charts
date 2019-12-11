@@ -19,21 +19,19 @@ This chart implements a full [Request Node](https://github.com/RequestNetwork/re
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release stable/request-node
+$ helm install --name my-release request/request-node
 ```
 
 ## Configuration
 
 The following table lists the configurable parameters of the Request Node chart and their default values.
 
-| Parameter | Description | Default |
-| --------- | ----------- | ------- |
-
-
-`nodeEnv.mnemonic` | The mnemonic of a wallet for gas fees | **Required value**
-`nodeEnv.web3ProviderUrl` | The URL of the Web3 provider (infura for instance) | **Required value**
-`nodeEnv.networkId` | The ethereum network (0 custom, 1 mainnet, 4 rinkeby) | **Required value**
-`nodeEnv.logLevel` | The node log level (ERROR, WARN, INFO or DEBUG) | `DEBUG`
+| Parameter                 | Description                                           | Default            |
+| ------------------------- | ----------------------------------------------------- | ------------------ |
+| `nodeEnv.mnemonic`        | The mnemonic of a wallet for gas fees                 | **Required value** |
+| `nodeEnv.web3ProviderUrl` | The URL of the Web3 provider (infura for instance)    | **Required value** |
+| `nodeEnv.networkId`       | The ethereum network (0 custom, 1 mainnet, 4 rinkeby) | **Required value** |
+| `nodeEnv.logLevel`        | The node log level (ERROR, WARN, INFO or DEBUG)       | `DEBUG`            |
 
 `replicaCount` | The amount of replicas to run | `1`
 `nodeImage.image` | The docker image for the Request Node | `requestnetwork/request-node`
@@ -48,7 +46,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install --name my-release -f values.yaml stable/request-node
+$ helm install --name my-release -f values.yaml request/request-node
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
@@ -68,5 +66,5 @@ $ kubectl delete pvc -l release=my-release
 Scaling should be managed by `helm upgrade`, which is the recommended way. Example:
 
 ```
-$ helm upgrade --set cluster.replicas=4 my-release stable/request-node
+$ helm upgrade --set cluster.replicas=4 my-release request/request-node
 ```

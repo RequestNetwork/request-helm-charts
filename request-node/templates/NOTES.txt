@@ -8,7 +8,7 @@ The node will not be able to run without a valid mnemonic key.
 Example:
   helm upgrade {{ .Release.Name }} \
     --set nodeEnv.mnemonic="candy maple cake sugar pudding cream honey rich smooth crumble sweet treat" \ 
-    stable/request-node
+    request/request-node
 
 {{- end }}
 
@@ -22,7 +22,7 @@ The node will not be able to run without a valid web3 provider URL.
 Example:
   helm upgrade {{ .Release.Name }} \
     --set nodeEnv.web3ProviderUrl="https://mainnet.infura.io/v3/YOUR-PROJECT-ID" \
-    stable/request-node
+    request/request-node
 {{- end }}
 
 {{- if (not (empty .Values.nodeEnv.networkId)) }}
@@ -33,7 +33,7 @@ Example:
 
 The node will not be able to run without a valid network id (chain id).
 Example:
-  helm upgrade {{ .Release.Name }} --set nodeEnv.networkId="4" stable/request-node
+  helm upgrade {{ .Release.Name }} --set nodeEnv.networkId="4" request/request-node
 {{- end }}
 
 
