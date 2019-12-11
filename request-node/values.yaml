@@ -5,34 +5,37 @@
 # The number of replicas for the Request Node
 replicaCount: 1
 
-nodeEnv: 
+nodeEnv:
   # Required settings
   # the mnemonic of a wallet for gas fees
-  mnemonic: 
+  mnemonic:
   # the URL of the Web3 provider (infura for instance)
-  web3ProviderUrl: 
+  web3ProviderUrl:
   # the ethereum network (0 custom, 1 mainnet, 4 rinkeby)
-  networkId: 
-  
+  networkId:
+
   # other settings
   logLevel: DEBUG
   initializationStorageFilePath: "/index/store.json"
-  
+
   # extra environment variables
-  extra: 
+  extra:
   # - name: VAR_NAME
   #   value: VAR_VALUE
 
+# The index storage directory on the node. Should match the initializationStorageFilePath path
+nodeIndexDirectoryPath: /index
+
 # The Request Node image information
 nodeImage:
-  registry: eu.gcr.io/request-240714/
-  repository: request-network
-  tag: development
+  image: requestnetwork/request-node
+  tag: 0.5.5
   pullPolicy: Always
 
 # The IPFS image information
 ipfsImage:
   image: requestnetwork/request-ipfs
+  tag: 0.3.4
   pullPolicy: Always
 
 # Name override
@@ -89,3 +92,12 @@ persistence:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+  tls:
