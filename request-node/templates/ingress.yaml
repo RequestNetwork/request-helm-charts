@@ -1,8 +1,9 @@
 {{- if .Values.ingress.enabled -}}
+{{- $fullName := include "request-node.fullname" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ include "request-node.fullname" . }}
+  name: {{ $fullName }}
   labels:
 {{ include "request-node.labels" . | indent 4 }}
   {{- with .Values.ingress.annotations }}
@@ -28,7 +29,7 @@ spec:
         {{- range .paths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ include "request-node.fullname" . }}
+              serviceName: {{ $fullName }}
               servicePort: http
         {{- end }}
   {{- end }}
