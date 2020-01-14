@@ -1,0 +1,16 @@
+# Service to expose the request node
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "request-node.fullname" . }}-api
+  labels:
+{{ include "request-node.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.ipfsApiService.type }}
+  ports:
+  - port: {{ .Values.ipfsApiService.port }}
+    targetPort: {{ .Values.ipfsApiPort }}
+    protocol: TCP
+    name: api-http
+  selector:
+{{ include "request-node.labels" . | indent 4 }}
