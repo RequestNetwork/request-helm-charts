@@ -19,6 +19,9 @@ data:
   WEB3_URL: {{ .Values.web3Url | quote }}
   ERC20_TRANSFER_EVENT_SIGNATURE_HASH: {{ .Values.erc20Hash | quote }}
   NETWORK: {{ .Values.network }}
+  IPFS_HOST: {{ .Values.ipfs.host | quote }}
+  IPFS_PORT: {{ .Values.ipfs.port | quote }}
+  IPFS_TIMEOUT: {{ .Values.ipfs.timeout | quote }}
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 2 }}
 {{- end }}
