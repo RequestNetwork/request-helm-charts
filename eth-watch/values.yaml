@@ -4,26 +4,31 @@ image:
   registry: eu.gcr.io/request-240714
 
 redis:
- # required
- host: "" 
- port: 6379
+  # required
+  host: ""
+  port: 6379
 
-db: 
- # required
- host: "" 
- # required
- name: "" 
- port: 27017
- collection: "requests"
- username: ""
- password: ""
+db:
+  # required
+  host: ""
+  # required
+  name: ""
+  port: 27017
+  collection: "requests"
+  username: ""
+  password: ""
+
+ipfs:
+  #required
+  host: ""
+  port: 5001
+  timeout: 3000
 
 # required
-web3Url: "" 
+web3Url: ""
 # required: mainnet, rinkeby
-network: "" 
+network: ""
 erc20Hash: 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
-
 
 replicas: 1
 resources: {}
