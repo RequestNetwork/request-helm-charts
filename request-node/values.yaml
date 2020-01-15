@@ -47,6 +47,11 @@ service:
   type: ClusterIP
   port: 80
 
+# The request node service type and port
+ipfsApiService:
+  type: ClusterIP
+  port: 5001
+
 # The resources declaration for the Request Node and IPFS
 resources:
   node: {}
@@ -97,7 +102,7 @@ ingress:
   enabled: false
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
   tls:
