@@ -38,7 +38,7 @@ jobs:
       - gcp-cli/initialize
       - run:
           name: Install helm-gcs
-          command: helm plugin install https://github.com/hayorov/helm-gcs
+          command: helm plugin install https://github.com/hayorov/helm-gcs --version 0.2.2
       - run:
           name: Add Repo, Auth and push Repo
           command: |
