@@ -29,13 +29,7 @@ nodeIndexDirectoryPath: /index
 # The Request Node image information
 nodeImage:
   image: requestnetwork/request-node
-  tag: 0.5.5
-  pullPolicy: Always
-
-# The IPFS image information
-ipfsImage:
-  image: requestnetwork/request-ipfs
-  tag: 0.3.4
+  tag: 0.6.0
   pullPolicy: Always
 
 # Name override
@@ -47,10 +41,6 @@ service:
   type: ClusterIP
   port: 80
 
-# The request node service type and port
-ipfsApiService:
-  type: ClusterIP
-  port: 5001
 
 # The resources declaration for the Request Node and IPFS
 resources:
@@ -60,9 +50,23 @@ resources:
 # Request Node port
 port: 3000
 
-# IPFS swarm and API ports
-ipfsSwarmPort: 4001
-ipfsApiPort: 5001
+# IPFS values
+ipfs:
+  # The IPFS image information
+  image:
+    image: requestnetwork/request-ipfs
+    tag: 0.4.23
+    pullPolicy: Always
+  # IPFS swarm port
+  swarm:
+    port: 4001
+  # IPFS API port
+  api:
+    port: 5001
+    # The ipfs API service type and port
+    service:
+      type: ClusterIP
+      port: 5001
 
 # The Request Node and IPFS persistence settings
 persistence:

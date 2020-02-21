@@ -57,7 +57,7 @@ spec:
           - name: LOG_LEVEL
             value: {{ .Values.nodeEnv.logLevel }}
           - name: IPFS_PORT
-            value: {{ .Values.ipfsApiPort | quote  }}
+            value: {{ .Values.ipfs.api.port | quote  }}
           - name: INITIALIZATION_STORAGE_FILE_PATH
             value: {{ .Values.nodeEnv.initializationStorageFilePath }}
         {{- with .Values.nodeEnv.extra }}
@@ -66,12 +66,24 @@ spec:
 
       # IPFS Node Container
       - name: ipfs
-        image: "{{ .Values.ipfsImage.image }}:{{ .Values.ipfsImage.tag }}"
-        imagePullPolicy: {{ .Values.ipfsImage.pullPolicy }}
+        image: "{{ .Values.ipfs.image.image }}:{{ .Values.ipfs.image.tag }}"
+        imagePullPolicy: {{ .Values.ipfs.image.pullPolicy }}
+        livenessProbe:
+          httpGet:
+            path: /debug/metrics/prometheus
+            port: api
+          initialDelaySeconds: 15
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /debug/metrics/prometheus
+            port: api
+          initialDelaySeconds: 15
+          periodSeconds: 3
         ports:
-        - containerPort: {{ .Values.ipfsSwarmPort }}
+        - containerPort: {{ .Values.ipfs.swarm.port }}
           name: swarm
-        - containerPort: {{ .Values.ipfsApiPort }}
+        - containerPort: {{ .Values.ipfs.api.port }}
           name: api
         volumeMounts:
         - name: ipfs-storage

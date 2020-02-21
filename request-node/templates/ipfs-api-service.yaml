@@ -6,10 +6,10 @@ metadata:
   labels:
 {{ include "request-node.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.ipfsApiService.type }}
+  type: {{ .Values.ipfs.api.service.type }}
   ports:
-  - port: {{ .Values.ipfsApiService.port }}
-    targetPort: {{ .Values.ipfsApiPort }}
+  - port: {{ .Values.ipfs.api.service.port }}
+    targetPort: {{ .Values.ipfs.api.port }}
     protocol: TCP
     name: api-http
   selector:
