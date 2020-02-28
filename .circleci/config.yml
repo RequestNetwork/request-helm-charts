@@ -56,10 +56,14 @@ workflows:
       - build-chart:
           name: build-eth-watch
           chart: eth-watch
+      - build-chart:
+          name: build-api-sync
+          chart: api-sync
       - push-helm-repository:
           requires:
             - build-request-node
             - build-eth-watch
+            - build-api-sync
           filters:
             branches:
               only:
