@@ -3,32 +3,37 @@ image:
   tag: latest
   registry: eu.gcr.io/request-240714
 
-redis:
-  # required
-  host: ""
-  port: 6379
-
 db:
   # required
-  host: ""
+  host: ''
   # required
-  name: ""
+  name: ''
   port: 27017
-  collection: "requests"
-  username: ""
-  password: ""
+  collection: 'requests'
+  username: ''
+  password: ''
 
 ipfs:
   #required
-  host: ""
+  host: ''
   port: 5001
   timeout: 3000
 
+pubsub:
+  # required
+  credentialsSecretName: ''
+  credentialsFileName: credentials.json
+  # optional, defaults to api-sync
+  # topic:
+
 # required
-web3Url: ""
+web3Url: ''
 # required: mainnet, rinkeby
-network: ""
-erc20Hash: 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
+network: ''
+# optional, the run frequency. Defaults to 5000
+# frequency:
+# optional, the healtchecks.io URL.
+# healthcheck:
 
 replicas: 1
 resources: {}
