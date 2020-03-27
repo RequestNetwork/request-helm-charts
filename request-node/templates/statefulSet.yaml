@@ -93,7 +93,7 @@ spec:
         - name: LIBP2P_FORCE_PNET
           value: "1"
         {{- if .Values.ipfs.swarm.externalIP }}
-        - name: SWARM_EXTERNAL_IP
+        - name: EXTERNAL_IP
           value: .Values.ipfs.swarm.externalIP
         {{- end }}
         {{- if .Values.ipfs.swarm.port }}
