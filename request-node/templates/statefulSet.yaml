@@ -98,7 +98,7 @@ spec:
         {{- end }}
         {{- if .Values.ipfs.swarm.port }}
         - name: SWARM_PORT
-          value: {{ .Values.ipfs.swarm.port }}
+          value: {{ .Values.ipfs.swarm.port | quote }}
         {{- end }}
         resources:
           {{ toYaml .Values.resources.ipfs | indent 12 }}
