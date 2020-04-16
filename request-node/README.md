@@ -43,6 +43,8 @@ The following table lists the configurable parameters of the Request Node chart 
 | `ipfs.image.pullPolicy`     | Dedicated IPFS server image pull policy               | `Always`                      |
 | `ipfs.swarm.loadBalancerIP` | The IPFS swarm load balancer IP (optional)            | ``                            |
 | `ipfs.swarm.externalIP`     | The IPFS swarm load balancer external IP (optional)   | ``                            |
+| `ipfs.identity.peerId`      | The IPFS node PeerID (optional)                       | ``                            |
+| `ipfs.identity.privateKey`  | The IPFS node Private Key (optional)                  | ``                            |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 

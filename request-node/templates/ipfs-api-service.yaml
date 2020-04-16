@@ -1,4 +1,4 @@
-# Service to expose the request node
+# Service to expose the IPFS node API
 apiVersion: v1
 kind: Service
 metadata:

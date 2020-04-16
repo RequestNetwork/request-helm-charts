@@ -100,6 +100,15 @@ spec:
         - name: SWARM_PORT
           value: {{ .Values.ipfs.swarm.port | quote }}
         {{- end }}
+        {{- if .Values.ipfs.identity }}
+        - name: PEER_ID
+          value: {{ .Values.ipfs.identity.peerId | quote }}
+        - name: PRIVATE_KEY
+          valueFrom:
+              secretKeyRef:
+                name: {{ include "request-node.fullname" . }}-secret
+                key: ipfsPrivateKey
+        {{- end }}
         resources:
           {{ toYaml .Values.resources.ipfs | indent 12 }}
 

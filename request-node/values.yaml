@@ -29,7 +29,7 @@ nodeIndexDirectoryPath: /index
 # The Request Node image information
 nodeImage:
   image: requestnetwork/request-node
-  tag: 0.6.0
+  tag: 0.8.0
   pullPolicy: Always
 
 # Name override
@@ -55,7 +55,7 @@ ipfs:
   # The IPFS image information
   image:
     image: requestnetwork/request-ipfs
-    tag: 0.4.23
+    tag: 0.4.26
     pullPolicy: Always
   # IPFS swarm port
   swarm:
@@ -67,7 +67,7 @@ ipfs:
     service:
       type: ClusterIP
       port: 5001
-
+      
 # The Request Node and IPFS persistence settings
 persistence:
   # Disable if we don't want persistence
