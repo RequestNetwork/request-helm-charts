@@ -18,7 +18,3 @@ spec:
   {{- if .Values.ipfs.swarm.loadBalancerIP }}
   loadBalancerIP: {{ .Values.ipfs.swarm.loadBalancerIP }}
   {{- end }}
-  {{- if .Values.ipfs.swarm.externalIP }}
-  externalIPs:
-    - {{ .Values.ipfs.swarm.externalIP }}
-  {{- end }}  
