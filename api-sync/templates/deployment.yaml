@@ -28,7 +28,7 @@ spec:
         secret:
           secretName: {{  required "pubsub.credentialsSecretName is required" .Values.pubsub.credentialsSecretName }}
       containers:
-      - name: eth-watch
+      - name: api-sync
         image: {{ template "image" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         volumeMounts:

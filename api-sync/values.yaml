@@ -23,8 +23,7 @@ pubsub:
   # required
   credentialsSecretName: ''
   credentialsFileName: credentials.json
-  # optional, defaults to api-sync-subscription
-  # subscription:
+  subscription: api-sync-subscription
 
 node:
   # required

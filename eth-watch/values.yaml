@@ -23,17 +23,16 @@ pubsub:
   # required
   credentialsSecretName: ''
   credentialsFileName: credentials.json
-  # optional, defaults to api-sync
-  # topic:
+  topic: api-sync
 
 # required
 web3Url: ''
 # required: mainnet, rinkeby
 network: ''
-# optional, the run frequency. Defaults to 5000
-# frequency:
+# the run frequency
+frequency: 5000
 # optional, the healtchecks.io URL.
-# healthcheck:
+healthcheck: ""
 
 replicas: 1
 resources: {}
