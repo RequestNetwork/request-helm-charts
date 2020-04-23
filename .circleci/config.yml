@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  helm: circleci/helm@0.1.2
+  helm: circleci/helm@0.2.3
   gcp-cli: circleci/gcp-cli@1.8.2
 
 jobs:
@@ -14,7 +14,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - helm/install-helm-client
+      - helm/install-helm-client:
+          version: v3.1.1
       - run:
           name: Lint
           command: helm lint << parameters.chart >>
@@ -34,11 +35,12 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - helm/install-helm-client
+      - helm/install-helm-client:
+          version: v3.1.1
       - gcp-cli/initialize
       - run:
           name: Install helm-gcs
-          command: helm plugin install https://github.com/hayorov/helm-gcs --version 0.2.2
+          command: helm plugin install https://github.com/hayorov/helm-gcs --version 0.3.1
       - run:
           name: Add Repo, Auth and push Repo
           command: |
