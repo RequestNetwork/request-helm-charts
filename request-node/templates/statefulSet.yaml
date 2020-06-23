@@ -69,15 +69,13 @@ spec:
         image: "{{ .Values.ipfs.image.image }}:{{ .Values.ipfs.image.tag }}"
         imagePullPolicy: {{ .Values.ipfs.image.pullPolicy }}
         livenessProbe:
-          httpGet:
-            path: /debug/metrics/prometheus
-            port: api
+          tcpSocket:
+              port: swarm
           initialDelaySeconds: 15
           periodSeconds: 3
         readinessProbe:
-          httpGet:
-            path: /debug/metrics/prometheus
-            port: api
+          tcpSocket:
+              port: swarm
           initialDelaySeconds: 15
           periodSeconds: 3
         ports:
