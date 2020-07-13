@@ -15,6 +15,3 @@ spec:
 {{ include "request-node.labels" . | indent 4 }}
   sessionAffinity: None
   type: LoadBalancer
-  {{- if .Values.ipfs.swarm.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.ipfs.swarm.loadBalancerIP }}
-  {{- end }}
