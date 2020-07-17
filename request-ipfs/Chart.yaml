@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: "0.3.0"
+description: A Helm chart for a dedicated Request IPFS node
+name: request-ipfs
+version: 0.6.3
+keywords:
+  - request
+  - ipfs
+  - crypto
+icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
