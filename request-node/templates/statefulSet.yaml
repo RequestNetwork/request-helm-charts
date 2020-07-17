@@ -72,6 +72,7 @@ spec:
           tcpSocket:
               port: swarm
           initialDelaySeconds: 15
+          timeoutSeconds: 5
           periodSeconds: 3
         readinessProbe:
           tcpSocket:
