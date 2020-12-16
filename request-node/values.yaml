@@ -5,9 +5,15 @@
 # The number of replicas for the Request Node
 replicaCount: 1
 
+# Set to true to enable Bitnami's Sealed Secrets instead of regular Secret.
+#  Useful if you store the values.yaml in a git repository.
+#  Important note: you must encrypt the secrets with the right namespace / secret name.
+sealedSecrets: false
+
 nodeEnv:
   # Required settings
   # the mnemonic of a wallet for gas fees
+  # if using Sealed Secrets, this must be the sealed for the right namespace / secret name.
   mnemonic:
   # the URL of the Web3 provider (infura for instance)
   web3ProviderUrl:
