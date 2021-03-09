@@ -47,7 +47,6 @@ service:
   type: ClusterIP
   port: 80
 
-
 # The resources declaration for the Request Node and IPFS
 resources:
   node: {}
@@ -73,7 +72,7 @@ ipfs:
     service:
       type: ClusterIP
       port: 5001
-      
+
 # The Request Node and IPFS persistence settings
 persistence:
   # Disable if we don't want persistence
@@ -117,5 +116,5 @@ ingress:
   hosts:
   tls:
 
-readinessProbe:
-  initialDelaySeconds: 600
+readinessProbe: {}
+livenessProbe: {}

@@ -33,6 +33,9 @@ spec:
           httpGet:
             path: /healthz
             port: http
+          {{- if  .Values.livenessProbe }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
+          {{- end }}
         readinessProbe:
           httpGet:
             path: /readyz
