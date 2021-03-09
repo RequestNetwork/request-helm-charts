@@ -37,6 +37,9 @@ spec:
           httpGet:
             path: /readyz
             port: http
+          {{- if  .Values.readinessProbe }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
+          {{- end }}
         resources:
           {{- toYaml .Values.resources.node | nindent 12 }}
         volumeMounts:

@@ -116,3 +116,6 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
   tls:
+
+readinessProbe:
+  initialDelaySeconds: 600
