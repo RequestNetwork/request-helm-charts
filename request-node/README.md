@@ -41,6 +41,7 @@ The following table lists the configurable parameters of the Request Node chart 
 | `ipfs.image.image`         | The docker image for the dedicated IPFS server        | `requestnetwork/request-ipfs` |
 | `ipfs.image.tag`           | The version tag for the dedicated IPFS server image   | `0.3.4`                       |
 | `ipfs.image.pullPolicy`    | Dedicated IPFS server image pull policy               | `Always`                      |
+| `ipfs.swarm.externalIP`    | The IPFS swarm announce external IP (optional)        | ``                            |
 | `ipfs.identity.peerId`     | The IPFS node PeerID (optional)                       | ``                            |
 | `ipfs.identity.privateKey` | The IPFS node Private Key (optional)                  | ``                            |
 
