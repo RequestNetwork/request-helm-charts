@@ -1,0 +1,194 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "request-xDAI-node.fullname" . }}
+  labels:
+{{ include "request-xDAI-node.labels" . | indent 4 }}
+spec:
+  serviceName: {{ .Chart.Name }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "request-xDAI-node.labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "request-xDAI-node.labels" . | indent 8 }}
+    spec:
+      securityContext:
+        # The image runs as uid 1000 by default, and needs to be able to write to the persistent volume to be able to start.
+        fsGroup: 1000
+        runAsUser: 1000
+
+      containers:
+      # Request Node Container
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.nodeImage.image }}:{{ .Values.nodeImage.tag }}"
+        imagePullPolicy: {{ .Values.nodeImage.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.port }}
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+          {{- if  .Values.livenessProbe }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
+          {{- end }}
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: http
+          {{- if  .Values.readinessProbe }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
+          {{- end }}
+        resources:
+          {{- toYaml .Values.resources.node | nindent 12 }}
+        volumeMounts:
+        - name: persistent-index
+          mountPath: {{ .Values.nodeIndexDirectoryPath }}
+        env:
+          - name: MNEMONIC
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "request-xDAI-node.fullname" . }} -secret
+                key: mnemonic
+          - name: WEB3_PROVIDER_URL
+            value: {{ required "web3ProviderUrl is required" .Values.nodeEnv.web3ProviderUrl }}
+          - name: PORT
+            value: {{ .Values.port | quote }}
+          - name: ETHEREUM_NETWORK_ID
+            value: {{ required "networkId is required" .Values.nodeEnv.networkId | quote }}
+          - name: LOG_LEVEL
+            value: {{ .Values.nodeEnv.logLevel }}
+          - name: IPFS_PORT
+            value: {{ .Values.ipfs.api.port | quote  }}
+          - name: INITIALIZATION_STORAGE_FILE_PATH
+            value: {{ .Values.nodeEnv.initializationStorageFilePath }}
+          - name: CHAIN_ID 
+            value: {{ required "chainId is required" .Values.nodeEnv.chain_id  }}
+        {{- with .Values.nodeEnv.extra }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+
+      # IPFS Node Container
+      - name: ipfs
+        image: "{{ .Values.ipfs.image.image }}:{{ .Values.ipfs.image.tag }}"
+        imagePullPolicy: {{ .Values.ipfs.image.pullPolicy }}
+        livenessProbe:
+          tcpSocket:
+              port: swarm
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+          periodSeconds: 3
+        readinessProbe:
+          tcpSocket:
+              port: swarm
+          initialDelaySeconds: 15
+          periodSeconds: 3
+        ports:
+        - containerPort: {{ .Values.ipfs.swarm.port }}
+          name: swarm
+        - containerPort: {{ .Values.ipfs.api.port }}
+          name: api
+        volumeMounts:
+        - name: ipfs-storage
+          mountPath: /data/ipfs
+        env:
+        # Forces the IPFS node to connect to the Request dedicated network
+        - name: LIBP2P_FORCE_PNET
+          value: "1"
+        {{- if .Values.ipfs.swarm.externalIP }}
+        - name: EXTERNAL_IP
+          value: {{ .Values.ipfs.swarm.externalIP }}
+        {{- end }}
+        {{- if .Values.ipfs.swarm.port }}
+        - name: SWARM_PORT
+          value: {{ .Values.ipfs.swarm.port | quote }}
+        {{- end }}
+        {{- if .Values.ipfs.identity }}
+        - name: PEER_ID
+          value: {{ .Values.ipfs.identity.peerId | quote }}
+        - name: PRIVATE_KEY
+          valueFrom:
+              secretKeyRef:
+                name: {{ include "request-xDAI-node.fullname" . }}-secret
+                key: ipfsPrivateKey
+        {{- end }}
+        resources:
+          {{ toYaml .Values.resources.ipfs | indent 12 }}
+
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      # If persistence is disabled, we use temporary volumes for IPFS and the Request Node persistent index
+      {{- if not .Values.persistence.enabled }}
+      volumes:
+      - name: ipfs-storage
+        emptyDir: {}
+      - name: persistent-index
+        emptyDir: {}
+      {{- end }}
+
+  # If persistence is enabled (default), we create a persistent volume for the Request Node persistent index and one for IPFS
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+  # IPFS storage volume
+  - metadata:
+      name: ipfs-storage
+      labels:
+        app.kubernetes.io/name: {{ include "request-xDAI-node.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- range $key, $value := .Values.persistence.ipfs.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+    spec:
+      accessModes:
+        {{- range .Values.persistence.ipfs.accessModes }}
+        - {{ . | quote }}
+        {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.ipfs.size | quote }}
+    {{- if .Values.persistence.ipfs.storageClass }}
+    {{- if (eq "-" .Values.persistence.ipfs.storageClass) }}
+      storageClassName: ""
+    {{- else }}
+      storageClassName: "{{ .Values.persistence.ipfs.storageClass }}"
+    {{- end }}
+    {{- end }}
+  # Request node persistent index volume
+  - metadata:
+      name: persistent-index
+      labels:
+        app.kubernetes.io/name: {{ include "request-xDAI-node.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- range $key, $value := .Values.persistence.node.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+    spec:
+      accessModes:
+        {{- range .Values.persistence.node.accessModes }}
+        - {{ . | quote }}
+        {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.node.size | quote }}
+    {{- if .Values.persistence.node.storageClass }}
+    {{- if (eq "-" .Values.persistence.node.storageClass) }}
+      storageClassName: ""
+    {{- else }}
+      storageClassName: "{{ .Values.persistence.node.storageClass }}"
+    {{- end }}
+    {{- end }}
+  {{- end }}
