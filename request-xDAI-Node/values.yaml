@@ -1,0 +1,120 @@
+# Default values for request-node.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The number of replicas for the Request Node
+replicaCount: 1
+
+# Set to true to enable Bitnami's Sealed Secrets instead of regular Secret.
+#  Useful if you store the values.yaml in a git repository.
+#  Important note: you must encrypt the secrets with the right namespace / secret name.
+sealedSecrets: false
+
+nodeEnv:
+  # Required settings
+  # the mnemonic of a wallet for gas fees
+  # if using Sealed Secrets, this must be the sealed for the right namespace / secret name.
+  mnemonic: 
+  # the URL of the Web3 provider (infura for instance)
+  web3ProviderUrl: https://rpc.xdaichain.com/,
+  # for the ethereum network based blockchains (64 for the mainnet and 4D for sokol testnet )
+  networkId: 
+
+  # other settings
+  logLevel: DEBUG
+  initializationStorageFilePath: "/index/store.json"
+
+  # extra environment variables
+  extra:
+  # - name: VAR_NAME
+  #   value: VAR_VALUE
+
+# The index storage directory on the node. Should match the initializationStorageFilePath path
+nodeIndexDirectoryPath: /index
+
+# The Request Node image information
+nodeImage:
+  image: requestnetwork/request-node
+  tag: 0.8.0
+  pullPolicy: Always
+
+# Name override
+nameOverride: ""
+fullnameOverride: ""
+
+# The request node service type and port
+service:
+  type: ClusterIP
+  port: 80
+
+# The resources declaration for the Request Node and IPFS
+resources:
+  node: {}
+  ipfs: {}
+
+# Request Node port
+port: 3000
+
+# IPFS values
+ipfs:
+  # The IPFS image information
+  image:
+    image: requestnetwork/request-ipfs
+    tag: 0.4.26
+    pullPolicy: Always
+  # IPFS swarm port
+  swarm:
+    port: 4001
+  # IPFS API port
+  api:
+    port: 5001
+    # The ipfs API service type and port
+    service:
+      type: ClusterIP
+      port: 5001
+
+# The Request Node and IPFS persistence settings
+persistence:
+  # Disable if we don't want persistence
+  enabled: true
+  node:
+    ## request node data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    size: "8Gi"
+    accessModes:
+      - ReadWriteOnce
+  ipfs:
+    ## ipfs data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    size: "8Gi"
+    accessModes:
+      - ReadWriteOnce
+
+# Advanced kubernetes configs
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+  tls:
+
+readinessProbe: {}
+livenessProbe: {}
