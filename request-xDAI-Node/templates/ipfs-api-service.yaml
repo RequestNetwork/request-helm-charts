@@ -1,0 +1,16 @@
+# Service to expose the IPFS node API
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "request-node.fullname" . }}-api
+  labels:
+{{ include "request-node.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.ipfs.api.service.type }}
+  ports:
+  - port: {{ .Values.ipfs.api.service.port }}
+    targetPort: {{ .Values.ipfs.api.port }}
+    protocol: TCP
+    name: api-http
+  selector:
+{{ include "request-node.labels" . | indent 4 }}
