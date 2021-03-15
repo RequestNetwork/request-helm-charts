@@ -1,0 +1,12 @@
+
+apiVersion: v2
+appVersion: 0.6.7
+description: A Helm chart for Request Node connected  with the xDAI blockchain
+name: request-node
+version: 0.6.10
+keywords:
+  - request
+  - ipfs
+  - crypto
+  - xDAI
+icon: xDAI-icon.svg
