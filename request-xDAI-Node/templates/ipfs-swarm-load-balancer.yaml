@@ -1,0 +1,17 @@
+# Load balancer to expose the IPFS node swarm port
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+{{ include "request-node.labels" . | indent 4 }}
+  name: {{ include "request-node.fullname" . }}-ipfs-swarm
+spec:
+  ports:
+  - name: swarm
+    port: {{ .Values.ipfs.swarm.port }}
+    protocol: TCP
+    targetPort: 4001
+  selector:
+{{ include "request-node.labels" . | indent 4 }}
+  sessionAffinity: None
+  type: LoadBalancer
