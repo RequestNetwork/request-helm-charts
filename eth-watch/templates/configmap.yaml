@@ -16,6 +16,7 @@ data:
   DATABASE_NAME: {{ .Values.db.name  | quote }}
   WEB3_URL: {{ .Values.web3Url | quote }}
   NETWORK: {{ .Values.network }}
+  API_NETWORK: {{ .Values.apiNetwork }}
   IPFS_HOST: {{ .Values.ipfs.host | quote }}
   IPFS_PORT: {{ .Values.ipfs.port | quote }}
   IPFS_TIMEOUT: {{ .Values.ipfs.timeout | quote }}

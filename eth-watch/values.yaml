@@ -29,6 +29,8 @@ pubsub:
 web3Url: ''
 # required: mainnet, rinkeby
 network: ''
+# recommended (will default to live for mainnet, test for rinkeby)
+apiNetwork: ''
 # the run frequency
 frequency: 5000
 # optional, the healtchecks.io URL.
