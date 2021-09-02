@@ -43,6 +43,14 @@ spec:
           {{- if  .Values.readinessProbe }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
           {{- end }}
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: http
+          {{- if  .Values.startupProbe }}
+          periodSeconds: {{ .Values.startupProbe.periodSeconds}}
+          failureThreshold: {{ .Values.startupProbe.failureThreshold}}
+          {{- end }}
         resources:
           {{- toYaml .Values.resources.node | nindent 12 }}
         volumeMounts:
