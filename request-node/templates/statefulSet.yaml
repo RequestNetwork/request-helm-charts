@@ -123,7 +123,7 @@ spec:
                 key: ipfsPrivateKey
         {{- end }}
         resources:
-          {{ toYaml .Values.resources.ipfs | indent 12 }}
+          {{- toYaml .Values.resources.ipfs | nindent 12 }}
 
     {{- with .Values.nodeSelector }}
       nodeSelector:
