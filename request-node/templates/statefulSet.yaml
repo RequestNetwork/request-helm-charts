@@ -30,27 +30,23 @@ spec:
           containerPort: {{ .Values.port }}
           protocol: TCP
         livenessProbe:
-          httpGet:
-            path: /healthz
-            port: http
-          {{- if  .Values.livenessProbe }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
-          {{- end }}
-        readinessProbe:
-          httpGet:
-            path: /readyz
-            port: http
-          {{- if  .Values.readinessProbe }}
-          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
-          {{- end }}
+          exec:
+            command:
+              - /usr/bin/wget
+              - --no-verbose
+              - --tries=1
+              - --spider
+              - http://localhost:{{ .Values.port }}/healthz
         startupProbe:
-          httpGet:
-            path: /readyz
-            port: http
-          {{- if  .Values.startupProbe }}
+          exec:
+            command:
+              - /usr/bin/wget
+              - --no-verbose
+              - --tries=1
+              - --spider
+              - http://localhost:{{ .Values.port }}/readyz
           periodSeconds: {{ .Values.startupProbe.periodSeconds}}
           failureThreshold: {{ .Values.startupProbe.failureThreshold}}
-          {{- end }}
         resources:
           {{- toYaml .Values.resources.node | nindent 12 }}
         volumeMounts:
@@ -84,14 +80,9 @@ spec:
         imagePullPolicy: {{ .Values.ipfs.image.pullPolicy }}
         livenessProbe:
           tcpSocket:
-              port: swarm
+            port: swarm
           initialDelaySeconds: 15
           timeoutSeconds: 5
-          periodSeconds: 3
-        readinessProbe:
-          tcpSocket:
-              port: swarm
-          initialDelaySeconds: 15
           periodSeconds: 3
         ports:
         - containerPort: {{ .Values.ipfs.swarm.port }}

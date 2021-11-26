@@ -116,6 +116,6 @@ ingress:
   hosts:
   tls:
 
-readinessProbe: {}
-livenessProbe: {}
-startupProbe: {}
+startupProbe:
+  failureThreshold: 125
+  periodSeconds: 10
