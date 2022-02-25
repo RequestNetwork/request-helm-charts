@@ -61,7 +61,7 @@ spec:
                 key: ipfsPrivateKey
         {{- end }}
         resources:
-          {{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.resources | indent 10 }}
 
     {{- with .Values.nodeSelector }}
       nodeSelector:
