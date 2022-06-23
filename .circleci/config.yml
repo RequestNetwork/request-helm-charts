@@ -56,19 +56,11 @@ workflows:
           name: build-request-node
           chart: request-node
       - build-chart:
-          name: build-eth-watch
-          chart: eth-watch
-      - build-chart:
-          name: build-api-sync
-          chart: api-sync
-      - build-chart:
           name: build-request-ipfs
           chart: request-ipfs
       - push-helm-repository:
           requires:
             - build-request-node
-            - build-eth-watch
-            - build-api-sync
             - build-request-ipfs
           filters:
             branches:
