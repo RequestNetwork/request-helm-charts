@@ -42,10 +42,7 @@ persistence:
   accessModes:
     - ReadWriteOnce
 
-livenessProbe:
-  initialDelaySeconds: 15
-  timeoutSeconds: 5
-  periodSeconds: 15
+livenessProbe: {}
 
 readinessProbe:
   initialDelaySeconds: 15
