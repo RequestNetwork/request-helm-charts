@@ -1,3 +1,5 @@
+{{- if .Values.ipfs.sidecar -}}
+
 # Load balancer to expose the IPFS node swarm port
 apiVersion: v1
 kind: Service
@@ -15,3 +17,5 @@ spec:
 {{ include "request-node.labels" . | indent 4 }}
   sessionAffinity: None
   type: LoadBalancer
+
+{{- end -}}

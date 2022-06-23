@@ -1,3 +1,5 @@
+{{- if .Values.ipfs.sidecar -}}
+
 # Service to expose the IPFS node API
 apiVersion: v1
 kind: Service
@@ -14,3 +16,5 @@ spec:
     name: api-http
   selector:
 {{ include "request-node.labels" . | indent 4 }}
+
+{{- end -}}
