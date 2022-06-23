@@ -59,21 +59,26 @@ spec:
                 name: {{ include "request-node.fullname" . }}-secret
                 key: mnemonic
           - name: WEB3_PROVIDER_URL
-            value: {{ required "web3ProviderUrl is required" .Values.nodeEnv.web3ProviderUrl }}
+            value: {{ required "nodeEnv.web3ProviderUrl is required" .Values.nodeEnv.web3ProviderUrl }}
           - name: PORT
             value: {{ .Values.port | quote }}
           - name: ETHEREUM_NETWORK_ID
-            value: {{ required "networkId is required" .Values.nodeEnv.networkId | quote }}
+            value: {{ required "nodeEnv.networkId is required" .Values.nodeEnv.networkId | quote }}
           - name: LOG_LEVEL
             value: {{ .Values.nodeEnv.logLevel }}
           - name: IPFS_PORT
             value: {{ .Values.ipfs.api.port | quote  }}
+          {{ if not .Values.ipfs.sidecar }}
+          - name: IPFS_HOST
+            value: {{ required "ipfs.api.host is required when IPFS is not a sidecar" .Values.ipfs.api.host | quote }}
+          {{ end }}
           - name: INITIALIZATION_STORAGE_FILE_PATH
             value: {{ .Values.nodeEnv.initializationStorageFilePath }}
         {{- with .Values.nodeEnv.extra }}
           {{- toYaml . | nindent 10 }}
         {{- end }}
 
+      {{- if .Values.ipfs.sidecar -}}
       # IPFS Node Container
       - name: ipfs
         image: "{{ .Values.ipfs.image.image }}:{{ .Values.ipfs.image.tag }}"
@@ -116,6 +121,7 @@ spec:
         resources:
           {{- toYaml .Values.resources.ipfs | nindent 12 }}
 
+      {{- end -}}
     {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -128,18 +134,21 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      # If persistence is disabled, we use temporary volumes for IPFS and the Request Node persistent index
+      {{- /* If persistence is disabled, we use temporary volumes for IPFS and the Request Node persistent index */}}
       {{- if not .Values.persistence.enabled }}
       volumes:
+      {{- if .Values.ipfs.sidecar  }}
       - name: ipfs-storage
         emptyDir: {}
+      {{- end }}
       - name: persistent-index
         emptyDir: {}
       {{- end }}
 
-  # If persistence is enabled (default), we create a persistent volume for the Request Node persistent index and one for IPFS
+  {{- /* If persistence is enabled (default), we create a persistent volume for the Request Node persistent index and one for IPFS */}}
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
+  {{- if .Values.ipfs.sidecar  }}
   # IPFS storage volume
   - metadata:
       name: ipfs-storage
@@ -164,6 +173,7 @@ spec:
       storageClassName: "{{ .Values.persistence.ipfs.storageClass }}"
     {{- end }}
     {{- end }}
+  {{- end}}
   # Request node persistent index volume
   - metadata:
       name: persistent-index
