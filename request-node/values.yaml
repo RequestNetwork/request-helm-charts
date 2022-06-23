@@ -57,6 +57,7 @@ port: 3000
 
 # IPFS values
 ipfs:
+  sidecar: true
   # The IPFS image information
   image:
     image: requestnetwork/request-ipfs
@@ -67,6 +68,8 @@ ipfs:
     port: 4001
   # IPFS API port
   api:
+    # required if `ipfs.sidecar` is false
+    # host: 
     port: 5001
     # The ipfs API service type and port
     service:
