@@ -47,6 +47,12 @@ service:
   type: ClusterIP
   port: 80
 
+# Probes configuration
+livenessProbe: {}
+startupProbe:
+  failureThreshold: 125
+  periodSeconds: 10
+
 # The resources declaration for the Request Node and IPFS
 resources:
   node: {}
@@ -75,6 +81,8 @@ ipfs:
     service:
       type: ClusterIP
       port: 5001
+  livenessProbe: {}
+  readinessProbe: {}
 
 # The Request Node and IPFS persistence settings
 persistence:
@@ -119,6 +127,3 @@ ingress:
   hosts:
   tls:
 
-startupProbe:
-  failureThreshold: 125
-  periodSeconds: 10

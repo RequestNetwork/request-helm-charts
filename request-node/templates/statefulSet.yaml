@@ -37,6 +37,11 @@ spec:
               - --tries=1
               - --spider
               - http://localhost:{{ .Values.port }}/healthz
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
         startupProbe:
           exec:
             command:
@@ -86,9 +91,19 @@ spec:
         livenessProbe:
           tcpSocket:
             port: swarm
-          initialDelaySeconds: 15
-          timeoutSeconds: 5
-          periodSeconds: 3
+          initialDelaySeconds: {{ .Values.ipfs.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.ipfs.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.ipfs.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.ipfs.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.ipfs.livenessProbe.failureThreshold }}
+        readinessProbe:
+          tcpSocket:
+            port: swarm
+          initialDelaySeconds: {{ .Values.ipfs.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.ipfs.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.ipfs.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.ipfs.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.ipfs.readinessProbe.failureThreshold }}
         ports:
         - containerPort: {{ .Values.ipfs.swarm.port }}
           name: swarm

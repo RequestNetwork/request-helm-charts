@@ -42,6 +42,15 @@ persistence:
   accessModes:
     - ReadWriteOnce
 
+livenessProbe:
+  initialDelaySeconds: 15
+  timeoutSeconds: 5
+  periodSeconds: 15
+
+readinessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 3
+
 # Advanced kubernetes configs
 nodeSelector: {}
 tolerations: []
