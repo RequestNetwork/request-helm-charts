@@ -11,6 +11,7 @@ spec:
     port: {{ .Values.swarm.port }}
     protocol: TCP
     targetPort: 4001
+  clusterIP: {{ .Values.swarm.clusterIP }}
   selector:
 {{ include "request-ipfs.labels" . | indent 4 }}
   sessionAffinity: None
