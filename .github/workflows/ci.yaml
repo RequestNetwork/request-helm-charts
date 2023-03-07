@@ -1,0 +1,53 @@
+name: Helm Charts build & deploy
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        chart:  [request-node, request-ipfs]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azure/setup-helm@v3
+        with:
+          version: v3.1.1
+      - name: Lint
+        run: helm lint ${{ matrix.chart }}
+      - name: Build
+        run: |
+          mkdir charts
+          helm package ${{ matrix.chart }} -d ./charts
+      - uses: actions/upload-artifact@v3
+        with:
+          name: charts
+          path: charts
+
+  deploy:
+    #if: github.ref == 'refs/heads/main'
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: charts
+          path: charts
+      - uses: azure/setup-helm@v3
+        with:
+          version: v3.1.1
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v1"
+        with:
+          token_format: "access_token"
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SA }}
+      - name: Deploy
+        run: |
+          helm repo add request-gcs gs://request-charts
+          for f in ./charts/*; do echo $f; helm gcs push $f request-gcs --public --force ; done;
