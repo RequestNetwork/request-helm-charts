@@ -47,6 +47,8 @@ jobs:
           token_format: "access_token"
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SA }}
+      - name: Install helm-gcs
+        run: helm plugin install https://github.com/hayorov/helm-gcs --version 0.3.4
       - name: Deploy
         run: |
           helm repo add request-gcs gs://request-charts
