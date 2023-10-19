@@ -18,6 +18,8 @@ spec:
       securityContext:
         # The image runs as uid 1000 by default, and needs to be able to write to the persistent volume to be able to start.
         fsGroup: 1000
+        # Shorten the time it takes to change ownership and permission of files on boot.
+        fsGroupChangePolicy: "OnRootMismatch"
         runAsUser: 1000
 
       containers:
