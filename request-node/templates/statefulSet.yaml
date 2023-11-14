@@ -73,17 +73,17 @@ spec:
             value: {{ required "nodeEnv.networkId is required" .Values.nodeEnv.networkId | quote }}
           - name: LOG_LEVEL
             value: {{ .Values.nodeEnv.logLevel }}
-          {{ if not .Values.ipfs.sidecar }}
+          {{- if not .Values.ipfs.sidecar }}
           - name: IPFS_URL
             value: {{ required "ipfs.api.url is required when IPFS is not a sidecar" .Values.ipfs.api.url | quote }}
-          {{ end }}
+          {{- end }}
           - name: INITIALIZATION_STORAGE_FILE_PATH
             value: {{ .Values.nodeEnv.initializationStorageFilePath }}
-        {{- with .Values.nodeEnv.extra }}
+        {{- with .Values.nodeEnv.extra -}}
           {{- toYaml . | nindent 10 }}
-        {{- end }}
+        {{- end -}}
 
-      {{- if .Values.ipfs.sidecar -}}
+      {{ if .Values.ipfs.sidecar }}
       # IPFS Node Container
       - name: ipfs
         image: "{{ .Values.ipfs.image.image }}:{{ .Values.ipfs.image.tag }}"
