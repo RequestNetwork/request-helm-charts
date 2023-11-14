@@ -1,4 +1,4 @@
-# Request IPFS 0.6.3 Helm Chart
+# Request IPFS Helm Chart
 
 This chart allows you to deploy a dedicated Request IPFS node, on a Kubernetes cluster.
 
