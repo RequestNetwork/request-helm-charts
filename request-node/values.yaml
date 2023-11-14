@@ -35,8 +35,8 @@ nodeIndexDirectoryPath: /index
 # The Request Node image information
 nodeImage:
   image: requestnetwork/request-node
-  tag: 0.8.0
-  pullPolicy: Always
+  tag: 0.27.0
+  pullPolicy: IfNotPresent
 
 # Name override
 nameOverride: ""
@@ -75,7 +75,7 @@ ipfs:
   # IPFS API port
   api:
     # required if `ipfs.sidecar` is false
-    host: 
+    url:
     port: 5001
     # The ipfs API service type and port
     service:
