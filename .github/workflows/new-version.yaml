@@ -1,0 +1,31 @@
+name: New image version
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        type: choice
+        required: true
+        options:
+          - request-node
+          - request-ipfs
+      version:
+        type: string
+        required: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: patch image
+        uses: mikefarah/yq@v4.35.2
+        with:
+          cmd: yq -i '.appVersion = "${{ inputs.version }}"' ./${{ inputs.package }}/Chart.yaml
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "feat(${{ inputs.package }}): update to ${{ inputs.version }}"
+          title: "feat(${{ inputs.package }}): update to ${{ inputs.version }}"
+          reviewers: ${{ github.actor }}
+          branch: patch/${{ inputs.package }}-${{ inputs.version }}

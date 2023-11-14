@@ -1,13 +1,15 @@
 name: Helm Charts build & deploy
 
-on: push
+on:
+  push:
+    branches: main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        chart:  [request-node, request-ipfs]
+        chart: [request-node, request-ipfs]
     steps:
       - uses: actions/checkout@v3
       - uses: azure/setup-helm@v3
