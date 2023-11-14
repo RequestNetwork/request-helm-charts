@@ -1,4 +1,4 @@
-# Request Node 0.5.5 Helm Chart
+# Request Node Helm Chart
 
 This chart allows you to deploy a Request Network node, with it's own IPFS server, on a Kubernetes cluster.
 
