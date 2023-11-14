@@ -15,8 +15,9 @@ resources: {}
 # The IPFS image information
 image:
   image: requestnetwork/request-ipfs
-  tag: 0.4.26
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
+  # defaults to Chart.AppVersion
+  # tag:
 # IPFS swarm port
 swarm:
   port: 4001

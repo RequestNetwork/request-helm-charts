@@ -25,7 +25,7 @@ spec:
       containers:
       # Request Node Container
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.nodeImage.image }}:{{ .Values.nodeImage.tag }}"
+        image: "{{ .Values.nodeImage.image }}:{{ .Values.nodeImage.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.nodeImage.pullPolicy }}
         ports:
         - name: http

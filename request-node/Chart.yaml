@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 0.8.0
+appVersion: 0.29.0
 description: A Helm chart for Request Node
 name: request-node
-version: 0.6.19
+version: 0.7.0
 keywords:
   - request
   - ipfs
