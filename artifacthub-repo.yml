@@ -1,0 +1,4 @@
+# This file is used to verify the repostitory. See https://artifacthub.io/docs/topics/repositories/#verified-publisher
+# It is not used directly, nor automatically synced. Upload to the GCS bucket manually when changing.
+repositoryID: 2ad58180-4009-49a1-8a1c-5a766b52bfd8
+

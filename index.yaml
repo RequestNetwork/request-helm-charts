@@ -1,0 +1,509 @@
+apiVersion: v1
+entries:
+  request-ipfs:
+  - apiVersion: v1
+    appVersion: 0.4.26
+    created: "2024-01-29T15:52:51.710506763Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 2963c941898e7838af6d2d4859c94d1a55ccc0ed38e60c2280915325864a46eb
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://storage.googleapis.com/request-charts/request-ipfs-0.6.11.tgz
+    version: 0.6.11
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2023-03-13T17:02:10.288903401Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: cd6ed9e88a33e9b91ef931ad88999dc815e9c82929c76c13246628a72a0b0e6c
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://storage.googleapis.com/request-charts/request-ipfs-0.6.10.tgz
+    version: 0.6.10
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2022-10-06T16:01:41.768420155Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 4c524ccb177b72105b749b9ec71b920feda84f6a8f19d0c59f44b1180b49d735
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://request-charts.storage.googleapis.com/request-ipfs-0.6.9.tgz
+    version: 0.6.9
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2022-10-06T16:01:06.048029376Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 81cfebffdcbcd0c5e496c020b0532fcc3ff3dc476d43fd8523f6612f239d48d1
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://request-charts.storage.googleapis.com/request-ipfs-0.6.8.tgz
+    version: 0.6.8
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2022-06-23T11:34:10.910582207Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 97badb4bab50876207c054b85eb6798be5ebd7b6b24f1a2b5d9d5916cfecae0c
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://request-charts.storage.googleapis.com/request-ipfs-0.6.7.tgz
+    version: 0.6.7
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2022-06-23T11:13:10.352262667Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: a3315998a039f1ea6b309809a28ce7907da6472c1eefb0678782e7d2c73a7099
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://request-charts.storage.googleapis.com/request-ipfs-0.6.6.tgz
+    version: 0.6.6
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2021-11-26T14:04:52.414286711Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 60220df6cb1b3d5e4015bfa7a505825f3ed268e0400600707ae9451242d5b4ec
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://request-charts.storage.googleapis.com/request-ipfs-0.6.5.tgz
+    version: 0.6.5
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-12-16T15:21:21.709619886Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 32f435a812825b3ff5e5e4dcf37636f57b6637eacdc7378f4a65634034e6961c
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://request-charts.storage.googleapis.com/request-ipfs-0.6.4.tgz
+    version: 0.6.4
+  request-node:
+  - apiVersion: v2
+    appVersion: 0.31.0
+    created: "2024-01-29T15:52:53.822015767Z"
+    description: A Helm chart for Request Node
+    digest: 83a16a0f3f93aac7d341b2429b9fe97cb3a1a07e754e2cc8c20fb21c070cccfd
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://storage.googleapis.com/request-charts/request-node-0.7.1.tgz
+    version: 0.7.1
+  - apiVersion: v2
+    appVersion: 0.29.0
+    created: "2023-11-14T12:42:50.350981581Z"
+    description: A Helm chart for Request Node
+    digest: 1330559fd8050f0e5d5e80978b7faf82110be18492f98012116875103ba60db9
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://storage.googleapis.com/request-charts/request-node-0.7.0.tgz
+    version: 0.7.0
+  - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2023-11-14T09:46:40.573726982Z"
+    description: A Helm chart for Request Node
+    digest: b5901372200a2c4afebec7fef2e9da6ecc597f5ab88780b94979142ac9ca1e1f
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://storage.googleapis.com/request-charts/request-node-0.6.19.tgz
+    version: 0.6.19
+  - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2023-10-19T11:52:42.008865195Z"
+    description: A Helm chart for Request Node
+    digest: 12057ad3c3732f2774218a770dd6443735a4bd58ddf1c894ccc0c07c346b4451
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://storage.googleapis.com/request-charts/request-node-0.6.18.tgz
+    version: 0.6.18
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2023-03-13T17:02:11.763045611Z"
+    description: A Helm chart for Request Node
+    digest: 081b44711833cb8fcbedb995b754851bc579f3fb99be04f513525513c068d7d2
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://storage.googleapis.com/request-charts/request-node-0.6.17.tgz
+    version: 0.6.17
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2022-06-23T13:32:23.826632154Z"
+    description: A Helm chart for Request Node
+    digest: e1ef0a9037ae95fdd05ab80bdf455b63c586159c91abc0a287a93281779f8cff
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.16.tgz
+    version: 0.6.16
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2022-06-23T11:13:11.2084532Z"
+    description: A Helm chart for Request Node
+    digest: 770314354004334a633580463d25d2251963e71d429509057fae6b9dcf48ee6b
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.15.tgz
+    version: 0.6.15
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2022-06-23T10:06:23.429975415Z"
+    description: A Helm chart for Request Node
+    digest: 61164717de0d8170463834c9f1f404e1c4fe2d62ef6b06e875e192f196cc150b
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.14.tgz
+    version: 0.6.14
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2022-02-25T14:14:22.4285999Z"
+    description: A Helm chart for Request Node
+    digest: 418f4ec93f7dc8b401a841cdf5edeb51b4ee9a21e0ba725444811339319d4ca7
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.13.tgz
+    version: 0.6.13
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2021-11-24T15:33:37.376004227Z"
+    description: A Helm chart for Request Node
+    digest: 976c2e00d4b3c8197b56cf34ee58b1ef9dcf3a271b57eb7a31d03aa843bd77bd
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.12.tgz
+    version: 0.6.12
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2021-09-02T12:49:10.542812547Z"
+    description: A Helm chart for Request Node
+    digest: 0f70bd3043006c61ea557becde38cf24cfa8dc91a472bdf0118b7bb4e32fb2b5
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.11.tgz
+    version: 0.6.11
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2021-05-10T12:11:04.212978226Z"
+    description: A Helm chart for Request Node
+    digest: d607de8ab998ece3f261e8678c69ecd3ef3da84cb8f3fa16f7f3679066ff02ad
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.10.tgz
+    version: 0.6.10
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2021-03-09T16:40:19.676058124Z"
+    description: A Helm chart for Request Node
+    digest: d5222d15f172ec21ee64dd98023c8dd0f9b6cba7c1c9c073e25b0862774a2e91
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.9.tgz
+    version: 0.6.9
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2021-03-09T11:42:42.908337585Z"
+    description: A Helm chart for Request Node
+    digest: e4fd7bcb8bde9291437bb8c53881e893d09a88761764aa6c11e42899aaacf2bc
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.8.tgz
+    version: 0.6.8
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2021-01-27T14:17:24.684739902Z"
+    description: A Helm chart for Request Node
+    digest: 4aa3beecef6dea58835f0ecac0902ffb40f3416d41c2f3194b620e8e6eed3837
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.7.tgz
+    version: 0.6.7
+  - apiVersion: v2
+    appVersion: 0.6.6
+    created: "2020-08-25T14:21:40.330026699Z"
+    description: A Helm chart for Request Node
+    digest: 998f96e290b0b517d357a7cf5357d50a9f50cc5c46f3ffc6ab2467ddf030b535
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.6.tgz
+    version: 0.6.6
+  - apiVersion: v2
+    appVersion: 0.6.5
+    created: "2020-06-02T09:48:46.349191798Z"
+    description: A Helm chart for Request Node
+    digest: fe13b0151c8afb4ef5ff8e7b191a4d28ebae7b6e59fb6be4fdf61dc09a4cdc3d
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.5.tgz
+    version: 0.6.5
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-04-17T12:35:05.739519192Z"
+    description: A Helm chart for Request Node
+    digest: b8c4d81c9dcf4bc9315cfa5bb3e6c4370067563ca78c753c48e7eaf6bb8c6c94
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.4.tgz
+    version: 0.6.4
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-04-16T04:09:17.062815642Z"
+    description: A Helm chart for Request Node
+    digest: 48bc40fa2ef806820a0ab1ae06a6c51ef05d084b63064bad3e7122457df154ce
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.3.tgz
+    version: 0.6.3
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-04-09T11:46:30.441059068Z"
+    description: A Helm chart for Request Node
+    digest: ab261004193a1e4cc251669df96afb5c82e7ef058dfe6f2cb6db32dcbc58abff
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.2.tgz
+    version: 0.6.2
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-04-09T10:14:59.156554935Z"
+    description: A Helm chart for Request Node
+    digest: c0510bacaf072ec07915388be25b7e2f45f0d23a4603a383dcd151ebe6719bfd
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.1.tgz
+    version: 0.6.1
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-02-21T07:59:28.46729885Z"
+    description: A Helm chart for Request Node
+    digest: cdce1a9e8e0df2a79198cdc4ad41c8fbffb0c63534a7a6529beff6d16c90fcdc
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2020-01-15T08:29:50.488055239Z"
+    description: A Helm chart for Request Node
+    digest: 44a78ebbe4069de12ed7eacf246380b4b38801b576fd03bbdb403b73193daae0
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.5.6.tgz
+    version: 0.5.6
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2019-12-11T12:04:48.510904856Z"
+    description: A Helm chart for Request Node
+    digest: bc5fc7e79378ce15474abb1da2783f36511f631c6a28e6f760fe81e09ba81ce2
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.5.5.tgz
+    version: 0.5.5
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2019-08-08T17:21:15.871570147+02:00"
+    description: A Helm chart for Request Node
+    digest: 9d0713e4be970c3e2cdebfa79589084dc46f35e0af3de95b90c37cd50325e517
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.3.3.tgz
+    version: 0.3.3
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2019-08-08T16:17:40.078799337+02:00"
+    description: A Helm chart for Request Node
+    digest: 9947f22d38232e6100dd29735fcda266a20c961565e5db1250cb37a3d0d27356
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2019-08-08T15:37:20.934341338+02:00"
+    description: A Helm chart for Request Node
+    digest: e37f4bd91f92812404133ce3a85bbc359fc5ec986a171812327b67e64aded7bf
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v1
+    appVersion: 0.3.0
+    created: "2019-08-08T15:37:13.40070245+02:00"
+    description: A Helm chart for Request Node
+    digest: a15067586d79de1bc194c254628ed21e6d50e642cf9b7d2e383ee44b20e4ac57
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-node
+    urls:
+    - https://request-charts.storage.googleapis.com/request-node-0.3.0.tgz
+    version: 0.3.0
+generated: "2024-01-29T15:52:53.822374538Z"
