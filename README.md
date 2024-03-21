@@ -1,5 +1,11 @@
 [![CircleCI](https://circleci.com/gh/RequestNetwork/request-helm-charts.svg?style=svg&circle-token=7f672824b8febacaea69fa451b9944fd07454617)](https://circleci.com/gh/RequestNetwork/request-helm-charts)
 
+> ### Note: the chart repository URL has changed
+> - from: https://request-charts.storage.googleapis.com
+> - to: https://requestnetwork.github.io/request-helm-charts.
+> 
+> Please use the new URL, the old one will stop beeing available soon.
+
 # Request Helm Charts repository
 
 This repository contains sources for all Request Helm Charts.
