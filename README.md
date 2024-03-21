@@ -2,7 +2,7 @@
 
 > ### Note: the chart repository URL has changed
 > - from: https://request-charts.storage.googleapis.com
-> - to: https://requestnetwork.github.io/request-helm-charts.
+> - to: https://requestnetwork.github.io/request-helm-charts
 > 
 > Please use the new URL, the old one will stop beeing available soon.
 
