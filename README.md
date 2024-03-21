@@ -2,12 +2,13 @@
 
 # Request Helm Charts repository
 
-This repository contains sources for all of Request Helm Charts. Using docker images available at https://hub.docker.com/u/requestnetwork
+This repository contains sources for all Request Helm Charts.
+They use Docker images available at https://hub.docker.com/u/requestnetwork.
 
 ## How to use?
 
 ```
-helm repo add request https://request-charts.storage.googleapis.com
+helm repo add request https://requestnetwork.github.io/request-helm-charts
 helm repo update
 helm install request/request-node
 ```
