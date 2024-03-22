@@ -4,7 +4,7 @@
 > - from: https://request-charts.storage.googleapis.com
 > - to: https://requestnetwork.github.io/request-helm-charts
 > 
-> Please use the new URL, the old one will stop beeing available soon.
+> Please use the new URL, the old one will stop being available soon.
 
 # Request Helm Charts repository
 
