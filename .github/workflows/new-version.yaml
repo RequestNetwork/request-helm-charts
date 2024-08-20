@@ -21,7 +21,7 @@ jobs:
       - name: patch image
         uses: mikefarah/yq@v4.35.2
         with:
-          cmd: yq -i '.appVersion = "${{ inputs.version }}"' ./${{ inputs.package }}/Chart.yaml
+          cmd: yq -i '.appVersion = "${{ inputs.version }}"' ./charts/${{ inputs.package }}/Chart.yaml
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
