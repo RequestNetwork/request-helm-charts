@@ -42,13 +42,13 @@ The following table lists the configurable parameters of the Request Node chart 
 | `ipfs.image.tag`                    | The version tag for the dedicated IPFS server image                                                                    | `0.3.4`                       |
 | `ipfs.image.pullPolicy`             | Dedicated IPFS server image pull policy                                                                                | `Always`                      |
 | `ipfs.swarm.port`                   | Port to access the IPFS swarm                                                                                          | `4001`                        |
-| `ipfs.swarm.externalIP`             | Swarm address to announce to the network (optional). Usually should be the same as `ipfs.swarm.service.loadBalancerIP` |                               |
+| `ipfs.swarm.externalIP`             | Swarm address to announce to the network (optional). Usually should be the same as `ipfs.swarm.service.loadBalancerIP` | `null`                        |
 | `ipfs.swarm.service.enabled`        | Whether to enable the load service to access to IPFS swarm                                                             | `true`                        |
 | `ipfs.swarm.service.type`           | The service type to access the IPFS swarm                                                                              | `LoadBalancer`                |
-| `ipfs.swarm.service.loadBalancerIP` | Static IP address used by the load balancer (optional)                                                                 |                               |
-| `ipfs.identity.peerId`              | The IPFS node PeerID (optional)                                                                                        |                               |
-| `ipfs.identity.privateKey`          | The IPFS node Private Key (optional)                                                                                   |                               |
-| `ipfs.extraEnvs`                    | Additional environment variables to pass down to the IPFS node (optional)                                              |                               |
+| `ipfs.swarm.service.loadBalancerIP` | Static IP address used by the load balancer (optional)                                                                 | `null`                        |
+| `ipfs.identity.peerId`              | The IPFS node PeerID (optional)                                                                                        | `null`                        |
+| `ipfs.identity.privateKey`          | The IPFS node Private Key (optional)                                                                                   | `null`                        |
+| `ipfs.extraEnvs`                    | Additional environment variables to pass down to the IPFS node (optional)                                              | `[]`                          |
 
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
