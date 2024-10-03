@@ -32,14 +32,21 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+Immutable Labels: labels that doesn't change between versions upgrades
+*/}}
+{{- define "request-ipfs.immutable-labels" -}}
+app.kubernetes.io/name: {{ include "request-ipfs.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
 Common labels
 */}}
 {{- define "request-ipfs.labels" -}}
-app.kubernetes.io/name: {{ include "request-ipfs.name" . }}
+{{ include "request-ipfs.immutable-labels" . }}
 helm.sh/chart: {{ include "request-ipfs.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}

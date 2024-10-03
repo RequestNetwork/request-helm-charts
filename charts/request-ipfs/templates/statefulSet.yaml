@@ -3,13 +3,13 @@ kind: StatefulSet
 metadata:
   name: {{ include "request-ipfs.fullname" . }}
   labels:
-{{ include "request-ipfs.labels" . | indent 4 }}
+{{ include "request-ipfs.immutable-labels" . | indent 4 }}
 spec:
   serviceName: {{ .Chart.Name }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-{{ include "request-ipfs.labels" . | indent 6 }}
+{{ include "request-ipfs.immutable-labels" . | indent 6 }}
   template:
     metadata:
       labels:
