@@ -34,6 +34,7 @@ The following table lists the configurable parameters of the Request IPFS chart 
 | `image.image`                  | The docker image for the dedicated IPFS node                                                                      | `requestnetwork/request-ipfs` |
 | `image.tag`                    | The version tag for the dedicated IPFS node image                                                                 | `v0.4.23`                     |
 | `image.pullPolicy`             | Dedicated IPFS node image pull policy                                                                             | `Always`                      |
+| `swarm.port`                   | Port to access the IPFS swarm                                                                                     | `4001`                        |
 | `swarm.externalIP`             | Swarm address to announce to the network (optional). Usually should be the same as `swarm.service.loadBalancerIP` | `null`                        |
 | `swarm.service.enabled`        | Whether to enable the load service to access to IPFS swarm                                                        | `true`                        |
 | `swarm.service.type`           | The service type to access the IPFS swarm                                                                         | `LoadBalancer`                |
