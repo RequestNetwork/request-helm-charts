@@ -1,4 +1,4 @@
-{{- if .Values.ipfs.sidecar and .Values.ipfs.swarm.service.enabled -}}
+{{- if and .Values.ipfs.sidecar .Values.ipfs.swarm.service.enabled -}}
 
 # Load balancer to expose the IPFS node swarm port
 apiVersion: v1
