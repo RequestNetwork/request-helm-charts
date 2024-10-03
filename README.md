@@ -17,6 +17,10 @@ helm repo update
 helm install request/request-node
 ```
 
+## Documentation
+- `request-ipfs` on [ArtifactHub](https://artifacthub.io/packages/helm/requestnetwork/request-ipfs)
+- `request-node` on [ArtifactHub](https://artifacthub.io/packages/helm/requestnetwork/request-node)
+
 ## Contributing
 
 New Charts must have their own top-level folders, and a new job in [.circleci/config.yml](.circleci/config.yml).
