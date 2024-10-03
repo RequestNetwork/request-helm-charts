@@ -87,6 +87,8 @@ ipfs:
     service:
       type: ClusterIP
       port: 5001
+  # Additional environment variables to be passed to the IPFS node
+  extraEnv: {}
   livenessProbe: {}
   readinessProbe: {}
 

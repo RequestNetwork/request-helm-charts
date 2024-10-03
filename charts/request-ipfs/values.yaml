@@ -44,6 +44,9 @@ persistence:
   accessModes:
     - ReadWriteOnce
 
+# Additional environment variables to be passed to the IPFS node
+extraEnv: {}
+
 livenessProbe: {}
 
 readinessProbe:

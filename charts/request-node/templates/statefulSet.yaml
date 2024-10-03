@@ -133,6 +133,11 @@ spec:
                 name: {{ include "request-node.fullname" . }}-secret
                 key: ipfsPrivateKey
         {{- end }}
+        # Set additional environment variables for the IPFS container
+        {{- range $key, $value := .Values.ipfs.extraEnv }}
+        - name: {{ $key }}
+          value: {{ tpl $value $ | quote }}
+        {{- end }}
         resources:
           {{- toYaml .Values.resources.ipfs | nindent 12 }}
 

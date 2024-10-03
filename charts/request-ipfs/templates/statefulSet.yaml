@@ -67,6 +67,11 @@ spec:
                 name: {{ include "request-ipfs.fullname" . }}-secret
                 key: ipfsPrivateKey
         {{- end }}
+        # Set additional environment variables for the IPFS container
+        {{- range $key, $value := .Values.extraEnv }}
+        - name: {{ $key }}
+          value: {{ tpl $value $ | quote }}
+        {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
 
@@ -82,7 +87,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      
+
   volumeClaimTemplates:
   # IPFS storage volume
   - metadata:
