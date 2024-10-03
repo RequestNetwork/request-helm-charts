@@ -2,7 +2,7 @@ apiVersion: v1
 appVersion: v0.4.23
 description: A Helm chart for a dedicated Request IPFS node
 name: request-ipfs
-version: 0.6.13
+version: 0.7.0
 keywords:
   - request
   - ipfs
