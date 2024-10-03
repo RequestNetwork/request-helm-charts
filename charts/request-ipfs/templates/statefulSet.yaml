@@ -67,6 +67,7 @@ spec:
                 name: {{ include "request-ipfs.fullname" . }}-secret
                 key: ipfsPrivateKey
         {{- end }}
+        # Set additional environment variables for the IPFS container
         {{- range $key, $value := .Values.extraEnv }}
         - name: {{ $key }}
           value: {{ tpl $value $ | quote }}
