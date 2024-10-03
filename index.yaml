@@ -3,6 +3,20 @@ entries:
   request-ipfs:
   - apiVersion: v1
     appVersion: 0.4.26
+    created: "2024-10-03T16:17:56.905724006Z"
+    description: A Helm chart for a dedicated Request IPFS node
+    digest: 0c942a2075bc7d6d8e3f13922188ef85523652e43f92c9b89b3f825ac7d5d39d
+    icon: https://raw.githubusercontent.com/RequestNetwork/Request/master/Hubs/Request%20Logos/Icon/svg/Request_icon_green.svg
+    keywords:
+    - request
+    - ipfs
+    - crypto
+    name: request-ipfs
+    urls:
+    - https://github.com/RequestNetwork/request-helm-charts/releases/download/request-ipfs-0.6.13/request-ipfs-0.6.13.tgz
+    version: 0.6.13
+  - apiVersion: v1
+    appVersion: 0.4.26
     created: "2024-10-03T15:45:34.787021389Z"
     description: A Helm chart for a dedicated Request IPFS node
     digest: 96fb58457458f04bdcdb1bef258b178b9429308fae940cec1322183b14bda059
@@ -562,4 +576,4 @@ entries:
     urls:
     - https://requestnetwork.github.io/request-helm-charts/request-node-0.3.0.tgz
     version: 0.3.0
-generated: "2024-10-03T15:45:34.89025034Z"
+generated: "2024-10-03T16:17:56.905852457Z"
