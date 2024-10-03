@@ -54,9 +54,9 @@ spec:
         # Forces the IPFS node to connect to the Request dedicated network
         - name: LIBP2P_FORCE_PNET
           value: "1"
-        {{- if .Values.ipfs.swarm.externalIP }}
+        {{- if .Values.swarm.externalIP }}
         - name: EXTERNAL_IP
-          value: {{ .Values.ipfs.swarm.externalIP }}
+          value: {{ .Values.swarm.externalIP }}
         {{- end }}
         {{- if .Values.swarm.port }}
         - name: SWARM_PORT

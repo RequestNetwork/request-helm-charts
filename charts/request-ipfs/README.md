@@ -28,17 +28,19 @@ $ helm install --name my-release request/request-ipfs
 
 The following table lists the configurable parameters of the Request IPFS chart and their default values.
 
-| Parameter              | Description                                                                                      | Default                       |
-|------------------------|--------------------------------------------------------------------------------------------------|-------------------------------|
-| `replicaCount`         | The amount of replicas to run                                                                    | `1`                           |
-| `image.image`          | The docker image for the dedicated IPFS node                                                     | `requestnetwork/request-ipfs` |
-| `image.tag`            | The version tag for the dedicated IPFS node image                                                | `v0.4.23`                     |
-| `image.pullPolicy`     | Dedicated IPFS node image pull policy                                                            | `Always`                      |
-| `swarm.loadBalancerIP` | Static IP address used by the load balancer (optional)                                           | `null`                        |
-| `swarm.externalIP`     | Swarm address to announce to the network. Usually same as `ipfs.swarm.loadBalancerIP` (optional) | `null`                        |
-| `identity.peerId`      | The IPFS node PeerID (optional)                                                                  | `null`                        |
-| `identity.privateKey`  | The IPFS node Private Key (optional)                                                             | `null`                        |
-| `extraEnvs`            | Additional environment variables to pass down to the IPFS node (optional)                        | `{}`                          |
+| Parameter                      | Description                                                                                                       | Default                       |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| `replicaCount`                 | The amount of replicas to run                                                                                     | `1`                           |
+| `image.image`                  | The docker image for the dedicated IPFS node                                                                      | `requestnetwork/request-ipfs` |
+| `image.tag`                    | The version tag for the dedicated IPFS node image                                                                 | `v0.4.23`                     |
+| `image.pullPolicy`             | Dedicated IPFS node image pull policy                                                                             | `Always`                      |
+| `swarm.externalIP`             | Swarm address to announce to the network (optional). Usually should be the same as `swarm.service.loadBalancerIP` | `null`                        |
+| `swarm.service.enabled`        | Whether to enable the load service to access to IPFS swarm                                                        | `true`                        |
+| `swarm.service.type`           | The service type to access the IPFS swarm                                                                         | `LoadBalancer`                |
+| `swarm.service.loadBalancerIP` | Static IP address used by the load balancer (optional)                                                            | `null`                        |
+| `identity.peerId`              | The IPFS node PeerID (optional)                                                                                   | `null`                        |
+| `identity.privateKey`          | The IPFS node Private Key (optional)                                                                              | `null`                        |
+| `extraEnvs`                    | Additional environment variables to pass down to the IPFS node (optional)                                         | `{}`                          |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
