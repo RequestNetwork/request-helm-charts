@@ -44,6 +44,8 @@ persistence:
   accessModes:
     - ReadWriteOnce
 
+extraEnv: {}
+
 livenessProbe: {}
 
 readinessProbe:

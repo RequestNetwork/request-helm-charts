@@ -87,6 +87,7 @@ ipfs:
     service:
       type: ClusterIP
       port: 5001
+  extraEnv: {}
   livenessProbe: {}
   readinessProbe: {}
 

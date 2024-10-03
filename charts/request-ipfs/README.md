@@ -36,8 +36,9 @@ The following table lists the configurable parameters of the Request IPFS chart 
 | `image.pullPolicy`     | Dedicated IPFS node image pull policy                                                            | `Always`                      |
 | `swarm.loadBalancerIP` | Static IP address used by the load balancer (optional)                                           |                               |
 | `swarm.externalIP`     | Swarm address to announce to the network. Usually same as `ipfs.swarm.loadBalancerIP` (optional) |                               |
-| `identity.peerId`      | The IPFS node PeerID (optional)                                                                  | ``                            |
-| `identity.privateKey`  | The IPFS node Private Key (optional)                                                             | ``                            |
+| `identity.peerId`      | The IPFS node PeerID (optional)                                                                  |                               |
+| `identity.privateKey`  | The IPFS node Private Key (optional)                                                             |                               |
+| `extraEnvs`            | Additional environment variables to pass down to the IPFS node (optional)                        |                               |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 

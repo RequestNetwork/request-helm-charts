@@ -48,6 +48,8 @@ The following table lists the configurable parameters of the Request Node chart 
 | `ipfs.swarm.service.loadBalancerIP` | Static IP address used by the load balancer (optional)                                                                 |                               |
 | `ipfs.identity.peerId`              | The IPFS node PeerID (optional)                                                                                        |                               |
 | `ipfs.identity.privateKey`          | The IPFS node Private Key (optional)                                                                                   |                               |
+| `ipfs.extraEnvs`                    | Additional environment variables to pass down to the IPFS node (optional)                                              |                               |
+
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
