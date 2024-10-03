@@ -28,14 +28,16 @@ $ helm install --name my-release request/request-ipfs
 
 The following table lists the configurable parameters of the Request IPFS chart and their default values.
 
-| Parameter             | Description                                       | Default                       |
-| --------------------- | ------------------------------------------------- | ----------------------------- |
-| `replicaCount`        | The amount of replicas to run                     | `1`                           |
-| `image.image`         | The docker image for the dedicated IPFS node      | `requestnetwork/request-ipfs` |
-| `image.tag`           | The version tag for the dedicated IPFS node image | `0.4.26`                      |
-| `image.pullPolicy`    | Dedicated IPFS node image pull policy             | `Always`                      |
-| `identity.peerId`     | The IPFS node PeerID (optional)                   | ``                            |
-| `identity.privateKey` | The IPFS node Private Key (optional)              | ``                            |
+| Parameter              | Description                                                                                      | Default                       |
+|------------------------|--------------------------------------------------------------------------------------------------|-------------------------------|
+| `replicaCount`         | The amount of replicas to run                                                                    | `1`                           |
+| `image.image`          | The docker image for the dedicated IPFS node                                                     | `requestnetwork/request-ipfs` |
+| `image.tag`            | The version tag for the dedicated IPFS node image                                                | `0.4.26`                      |
+| `image.pullPolicy`     | Dedicated IPFS node image pull policy                                                            | `Always`                      |
+| `swarm.loadBalancerIP` | Static IP address used by the load balancer (optional)                                           |                               |
+| `swarm.externalIP`     | Swarm address to announce to the network. Usually same as `ipfs.swarm.loadBalancerIP` (optional) |                               |
+| `identity.peerId`      | The IPFS node PeerID (optional)                                                                  | ``                            |
+| `identity.privateKey`  | The IPFS node Private Key (optional)                                                             | ``                            |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 

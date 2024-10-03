@@ -21,7 +21,7 @@ image:
 # IPFS swarm port
 swarm:
   port: 4001
-  loadBalancerIP: 
+  loadBalancerIP:
 # IPFS API port
 api:
   port: 5001

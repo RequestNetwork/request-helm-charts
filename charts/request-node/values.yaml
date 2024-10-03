@@ -73,6 +73,8 @@ ipfs:
   # IPFS swarm port
   swarm:
     port: 4001
+    loadBalancerIP:
+    externalIP:
   # IPFS API port
   api:
     # required if `ipfs.sidecar` is false

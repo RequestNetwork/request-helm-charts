@@ -13,6 +13,7 @@ spec:
     port: {{ .Values.ipfs.swarm.port }}
     protocol: TCP
     targetPort: 4001
+  loadBalancerIP: {{ .Values.swarm.loadBalancerIP }}
   selector:
 {{ include "request-node.labels" . | indent 4 }}
   sessionAffinity: None
