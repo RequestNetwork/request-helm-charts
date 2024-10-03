@@ -68,7 +68,7 @@ ipfs:
   # The IPFS image information
   image:
     image: requestnetwork/request-ipfs
-    tag: 0.4.26
+    tag: v0.4.23
     pullPolicy: Always
   # IPFS swarm port
   swarm:
